@@ -22,7 +22,7 @@ class LoadBalancer {
         std::vector<WebServer*> web_servers;
         int time;
         std::vector<std::string> blocked_ip;
-        Config* config;
+        const Config* config;
         LogFileStats* log_file;
         std::ofstream log_file_stream;
         // Constructor
@@ -101,7 +101,7 @@ class LoadBalancer {
     private:
         void add_server();
         void remove_server();
-        int last_server_check_time();
+        int last_server_check_time;
 };
 
 #endif //LOADBALANCER_H
