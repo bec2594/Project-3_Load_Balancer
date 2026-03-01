@@ -19,13 +19,11 @@ class Config {
         // constructor
         Config();
 
+
+        std::string trim_whitespace(const std::string& str);
         // loads configuration parameters from file (input configuration file [instruction 13])
         // return true if loading was successful, false if fails
-        bool load_from_file(const std::string& file);
-
-        private:
-            // function to parse config lines
-            void parseLine(const std::string& line);
+        bool load_from_file(const std::string& config_file);
 };
 
 #endif // CONFIG_H
