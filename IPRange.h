@@ -2,6 +2,7 @@
 #define IPRANGE_H
 
 #include <string>
+#include <arpa/inet.h>
 
 class IPRange {
     public:
@@ -20,7 +21,7 @@ class IPRange {
          */
         bool contains(const std::string& ip) const;
     private:
-        long ip_to_long_format(const std::string &ip_string) const;
+        uint32_t ip_to_32bit_format(const std::string &ip_string) const;
 };
 
 #endif // IPRANGE_H

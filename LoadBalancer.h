@@ -21,7 +21,7 @@ class LoadBalancer {
         std::queue<Request*> request_queue;
         std::vector<WebServer*> web_servers;
         int time;
-        std::vector<std::string> blocked_ip;
+        std::vector<IPRange> blocked_ip;
         const Config* config;
         LogFileStats* log_file;
         std::ofstream log_file_stream;
