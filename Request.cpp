@@ -1,23 +1,24 @@
-#include "Request.h"
+#ifndef REQUEST_H
+#define REQUEST_H
 
+#include <string>
+#include <ostream>
 
-void Request::print(std::ostream& output) const {
-    output << "Req ID: " << id
-        << " | IP In: " << IP_in
-        << " | IP Out: " << IP_out
-        << " | Proc Time: " << processing_time
-        << " | Type: " << job_type
-        << " | Arrival: " << arrival_time;
+class Request {
+    public:
+        int id;
+        std::string IP_in;
+        std::string IP_out;
+        int processing_time;
+        char job_type;
+        int arrival_time;
+        int start_time;
+        int completion_time;
 
-    if (start_time != -1) {
-        output << " | Start: " << start_time;
-    }
-    if (completion_time != -1) {
-        output << " | Complete: " << completion_time;
-        // Optionally calculate and display total time spent in system
-        output << " | Total System Time: " << (completion_time - arrival_time);
-        // Optionally calculate and display wait time (queue time)
-        output << " | Wait Time: " << (start_time - arrival_time);
-    }
-    output << std::endl; // Ensure a newline after each request's details
-}
+        Request(int request_id, std::string ip_in, std::string ip_out, int process_time, char type, int arrival_time);
+        // no destructor because there are no pointers and strings handle resource management
+
+        // print the details of the request
+        void print(std::ostream& output) const;
+};
+#endif // REQUEST_H
