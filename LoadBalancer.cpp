@@ -21,6 +21,7 @@ LoadBalancer::LoadBalancer(int LB_id, const Config* config_ptr, LogFileStats* lo
 
     for(int i = 0; i < config->initial_server_count; i++) {
         add_server();
+        log_file->increment_servers_added();
     }
     log_event("LoadBalancer " + std::to_string(id) +  " initialized with " + std::to_string(web_servers.size()) + " servers.");
 }
@@ -115,12 +116,14 @@ void LoadBalancer::manage_server_count() {
     // if not enough requests, remove server and update log file stats
     if(current_num_requests < lower && current_server_count >= 1) {
         remove_server();
+        log_file->increment_servers_removed();
         log_event("Removed a server due too few requests " + std::to_string(current_num_requests) + " < lower threshold " + std::to_string(lower) + ". New webserver count: " + std::to_string(web_servers.size()));
         log_file->total_servers_removed++;
     }
     // if too many requests, add server and update log file stats
     else if (current_num_requests > upper) {
         add_server();
+        log_file->increment_servers_added();
         log_event("Added a server due to too many requests " + std::to_string(current_num_requests) + " < upper threshold " + std::to_string(upper) + ". New webserver count: " + std::to_string(web_servers.size()));
         log_file->total_servers_added++;
     }

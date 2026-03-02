@@ -11,7 +11,7 @@ class LogFileStats {
         int total_servers_added;
         int total_servers_removed;
         int max_queue_size;
-        long long current_queue_size;
+        long long current_queue_size_sum;
         int number_queue_samples;
         int requests_blocked;
         long long total_wait_time;
@@ -21,6 +21,16 @@ class LogFileStats {
         // Constructor initialize all to 0
         LogFileStats();
 
+
+        // inccrement total_servers_added
+        // called in the manage servers function in LoadBalancer
+        void increment_servers_added();
+
+        // increment total_servers_removed 
+        // called in the manage servers function in LoadBalancer
+        void increment_servers_removed();
+
+        
         // update queue stats
         /**
          * updates queue statistics
