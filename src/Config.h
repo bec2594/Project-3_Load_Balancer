@@ -8,7 +8,7 @@ class Config {
         int initial_server_count;
         int queue_low_count;
         int queue_high_count;
-        int initial_queue_fill;
+        double initial_queue_fill;
         int min_process_time;
         int max_process_time;
         int duration_cycles;

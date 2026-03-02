@@ -1,8 +1,6 @@
 #include "RequestGenerator.h"
-
 #include <chrono>
 #include <sstream>
-
 // constructor
 RequestGenerator::RequestGenerator(const Config* config_ptr) :
     config(config_ptr),
@@ -12,28 +10,23 @@ RequestGenerator::RequestGenerator(const Config* config_ptr) :
     job_type_dist(0, 1), // 0 for 'P', 1 for 'S'
     ip_range_choice_dist(0, 2)
 {}
-
 Request* RequestGenerator::generate_request(int const time, int& id) {
-    int req_id = id++;
+    int req_id = id++; // Correctly uses and increments the passed-by-reference id
     std::string ip_in = generate_IP();
     std::string ip_out = generate_IP();
     int process_time = generate_time();
     char job_type = generate_job_type();
-
     return new Request(req_id, ip_in, ip_out, process_time, job_type, time);
 }
-
 std::string RequestGenerator::generate_IP() {
     std::stringstream ss;
-
     // Randomly choose one of 3 common private IP ranges
     int choice = ip_range_choice_dist(random_engine);
-
     switch (choice) {
         case 0: // 192.168.X.X range
             ss << "192.168." << ip_octet_dist(random_engine) << "." << ip_octet_dist(random_engine);
             break;
-        case 1: { 
+        case 1: {
             //  10.X.X.X generation:
             ss << "10." << ip_octet_dist(random_engine) << "." // X can be 0 or 1, hitting your range
                << ip_octet_dist(random_engine) << "." << ip_octet_dist(random_engine);
@@ -45,11 +38,9 @@ std::string RequestGenerator::generate_IP() {
     }
     return ss.str();
 }
-
 int RequestGenerator::generate_time()  {
     return time_dist(random_engine);
 }
-
 char RequestGenerator::generate_job_type()  {
     return (job_type_dist(random_engine) == 0) ? 'P' : 'S';
 }

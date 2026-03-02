@@ -14,12 +14,12 @@ Config::Config() :
     initial_server_count(3),
     queue_low_count(50), // instruction 10
     queue_high_count(80),
-    initial_queue_fill(100),
+    initial_queue_fill(0.5),
     min_process_time(10),
     max_process_time(100),
     duration_cycles(10000), // deliverable 2
     server_check_interval_cycles(50),
-    new_request_probability(0.7),
+    new_request_probability(0.3),
     log_file_name("log.txt"){}
 
 
@@ -70,7 +70,7 @@ bool Config::load_from_file(const std::string& config_file) {
         } else if (key == "queue_high_count") {
             queue_high_count = std::stoi(value);
         } else if (key == "initial_queue_fill") {
-            initial_queue_fill = std::stoi(value);
+            initial_queue_fill = std::stod(value);
         } else if (key == "min_process_time") {
             min_process_time = std::stoi(value);
         } else if (key == "max_process_time") {

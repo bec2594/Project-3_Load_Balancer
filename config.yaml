@@ -1,0 +1,35 @@
+#
+# Simulation Configuration for Load Balancer Project
+# This file is in YAML (YAML Ain't Markup Language) format.
+#
+
+# Initial number of WebServers for the LoadBalancer
+initial_server_count: 90
+
+# Queue size threshold multipliers (multiplied by current_server_count)
+# If queue size drops below (queue_low_count_multiplier * server_count), consider removing a server
+queue_low_count_multiplier: 50
+# If queue size exceeds (queue_high_count_multiplier * server_count), consider adding a server
+queue_high_count_multiplier: 80
+
+# Multiplier for initial queue fill (server_count * initial_queue_fill_multiplier)
+initial_queue_fill_multiplier: 0.5
+
+# Minimum and maximum processing time for a request (in clock cycles)
+min_process_time: 10
+max_process_time: 100
+
+# Total duration of the simulation in clock cycles
+duration_cycles: 20000
+
+# Number of clock cycles to wait between server add/remove checks
+server_check_interval_cycles: 50
+
+# Probability (0.0 to 1.0) of a new request arriving in any given clock cycle
+new_request_prob: 0.3
+
+# Probability (0.0 to 1.0) that generated IP_in will fall into a 'blocked' range
+blocked_ip_generation_chance: 0.2
+
+# Base name for log files (e.g., simulation_log.txt, simulation_log_LB1.txt)
+log_file_name: simulation_log

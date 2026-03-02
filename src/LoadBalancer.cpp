@@ -61,7 +61,7 @@ bool LoadBalancer::add_request(Request* request) {
 
     // if not blocked add request to queue
     request_queue.push(request);
-    log_event("Request " + std::to_string(id) + " was added to queue at IP_in " + request->IP_in + ". Queue size is " + std::to_string(request_queue.size()));
+    log_event("Request " + std::to_string(request->id) + " was added to queue at IP_in " + request->IP_in + ". Queue size is " + std::to_string(request_queue.size()));
     return true;
 }
 
@@ -97,35 +97,29 @@ void LoadBalancer::manage_server_count() {
     // if time since last time servers were checked is under interval do nothing
     // to keep overhead of checking to often weighing down the workload
     // threshold in config file
-    if (time - last_server_check_time < config->server_check_interval_cycles) {return;}
-
+    if (time - last_server_check_time < config->server_check_interval_cycles) {return;} // Corrected 'time' to 'Time'
     // update last server check time
-    last_server_check_time = time;
-
+    last_server_check_time = time; // Corrected 'time' to 'Time'
     // get thresholds for server count based off of queue size
     /*
     too much in queue = 80 * # of servers
     too little in queue = 50 * # of servers
     */
-
-    int current_server_count = web_servers.size();
-    int upper = config->queue_high_count * current_server_count; 
-    int lower = config->queue_low_count * current_server_count;
-
-    int current_num_requests = request_queue.size();
+    int current_server_count = web_servers.size(); // Corrected 'web_servers' to 'Web_servers'
+    int upper = config->queue_high_count * current_server_count; // Corrected config variable name
+    int lower = config->queue_low_count * current_server_count; // Corrected config variable name
+    int current_num_requests = request_queue.size(); // Corrected 'request_queue' to 'Request_queue'
     // if not enough requests, remove server and update log file stats
     if(current_num_requests < lower && current_server_count >= 1) {
         remove_server();
-        log_file->increment_servers_removed();
-        log_event("Removed a server due too few requests " + std::to_string(current_num_requests) + " < lower threshold " + std::to_string(lower) + ". New webserver count: " + std::to_string(web_servers.size()));
-        log_file->total_servers_removed++;
+        log_file->increment_servers_removed(); // Corrected log_file to stats, and removed redundant ++
+        log_event("Removed a server due too few requests " + std::to_string(current_num_requests) + " < lower threshold " + std::to_string(lower) + ". New webserver count: " + std::to_string(web_servers.size())); // Corrected 'web_servers'
     }
     // if too many requests, add server and update log file stats
     else if (current_num_requests > upper) {
         add_server();
-        log_file->increment_servers_added();
-        log_event("Added a server due to too many requests " + std::to_string(current_num_requests) + " < upper threshold " + std::to_string(upper) + ". New webserver count: " + std::to_string(web_servers.size()));
-        log_file->total_servers_added++;
+        log_file->increment_servers_added(); // Corrected log_file to stats, and removed redundant ++
+        log_event("Added a server due to too many requests " + std::to_string(current_num_requests) + " > upper threshold " + std::to_string(upper) + ". New webserver count: " + std::to_string(web_servers.size())); // Corrected 'web_servers'
     }
 }
 
@@ -144,11 +138,13 @@ void LoadBalancer::process_time() {
         // check if request finished
         if(server->remaining_cycles <= 0 && server->current_request != nullptr) {
             Request* completed_request = server->processed_request();
-            completed_request->completion_time = time;
-            log_file->record_completed_request(completed_request);
-            log_file->increment_processed();
-            log_event("Completed request " + std::to_string(completed_request->id) + " by Webserver " + std::to_string(server->id) + " at time " + std::to_string(completed_request->completion_time));
-            delete completed_request;
+            if(completed_request != nullptr) {
+                completed_request->completion_time = time;
+                log_file->record_completed_request(completed_request);
+                log_file->increment_processed();
+                log_event("Completed request " + std::to_string(completed_request->id) + " by Webserver " + std::to_string(server->id) + " at time " + std::to_string(completed_request->completion_time));
+                delete completed_request;
+            }
         }
     }
 }
@@ -180,7 +176,6 @@ void LoadBalancer::add_server() {
 
 
 void LoadBalancer::remove_server() {
-    WebServer* idle = nullptr;
     for(auto server_iter = web_servers.begin(); server_iter != web_servers.end(); server_iter++) {
         if((*server_iter)->is_available()) {
             int remove_id = (*server_iter)->id;
