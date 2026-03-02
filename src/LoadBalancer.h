@@ -1,3 +1,9 @@
+/**
+ * @file LoadBalancer.h
+ * @brief Declares the LoadBalancer class, which manages request queuing, dispatching to WebServers,
+ *        dynamic server scaling, firewall IP blocking, and per-load-balancer logging. [6]
+ */
+
 #ifndef LOADBALANCER_H
 #define LOADBALANCER_H
 
@@ -7,101 +13,131 @@
 #include <string>
 #include <fstream>
 
-
 #include "WebServer.h"
 #include "Request.h"
 #include "Config.h"
 #include "LogFileStats.h"
 #include "IPRange.h"
 
-
+/**
+ * @class LoadBalancer
+ * @brief Coordinates a pool of WebServer instances by accepting Requests, filtering blocked IPs,
+ *        dispatching work, and scaling server count based on queue thresholds. [6]
+ */
 class LoadBalancer {
-    public:
-        int id;
-        std::queue<Request*> request_queue;
-        std::vector<WebServer*> web_servers;
-        int time;
-        std::vector<IPRange> blocked_ip;
-        const Config* config;
-        LogFileStats* log_file;
-        std::ofstream log_file_stream;
-        // Constructor
-        /**
-         * Constructs Load Balancer
-         * LB_id: unique identifier for each load balancer (need multiple [instruction 8])
-         * config_ptr: ptr to shared config object (need configuration file [instruction 13])
-         * log_file_stats_ptr: ptr to shared LogFileStats object (need log file for summary for LB actions [instruction 13])
-         * curr_time: time value for simulation, when the LB gets created ()
-         */
-        LoadBalancer(int LB_id, const Config* config_ptr, LogFileStats* log_file_stats_ptr, int curr_time);
-        // Destructor
-        /**
-         * Load Balancer Destructor
-         * cleans up webservers, requests
-         */
-        ~LoadBalancer();
+public:
+    /** @brief Unique identifier for this load balancer instance. [6] */
+    int id;
 
-        // add request to queue
-        /**
-         * adds new request to queue
-         * request: ptr to request object
-         * return true if request added to queue, return false if blocked
-         */
-        bool add_request(Request* request);
+    /** @brief FIFO queue of pending requests owned by the load balancer. [6] */
+    std::queue<Request*> request_queue;
 
-        // dispatch request
-        /**
-         * sends a request from the queue to an available webserver
-         * uses the request queue and web server vector
-         */
-        void dispatch_requests();
+    /** @brief List of managed WebServer instances (owned by the load balancer). [6] */
+    std::vector<WebServer*> web_servers;
 
-        // manage_server_count
-        /**
-         * adjust the amount of servers based on the queue size
-         * queue size is between 50 and 80 times the number of servers
-         */
-        void manage_server_count();
+    /** @brief Current local time counter for this load balancer (simulation cycles). [6] */
+    int time;
 
-        // process_time
-        /**
-         * process one tick for the Load balancer and the web servers
-         * updates the server status (from unused to used) and completed requests (from used to unused)
-         */
-        void process_time();
+    /** @brief List of blocked incoming IP ranges (firewall rules). [6] */
+    std::vector<IPRange> blocked_ip;
 
-        // add blocked ip address range
-        /**
-         * adds an ip address range to the blocked list blocked_ip
-         * address_range: IPRange 
-         */
-        void add_blocked_IP_range(const IPRange& range);
+    /** @brief Pointer to shared configuration data (not owned). [6] */
+    const Config* config;
 
-        // queue_size()
-        // returns active number of servers
-        int queue_size() const;
+    /** @brief Pointer to shared statistics collector (not owned by LoadBalancer in this design). [6] */
+    LogFileStats* log_file;
 
-        // server count
-        // returns the number of servers
-        int server_count() const;
+    /** @brief Output stream for per-load-balancer event logging. [6] */
+    std::ofstream log_file_stream;
 
-        // get stats
-        /**
-         * access LogFileStats and return pointer to this object
-         */
-        LogFileStats* get_stats() const;
+    /**
+     * @brief Constructs a LoadBalancer. [6]
+     *
+     * @param LB_id Unique identifier for each load balancer (supports multiple instances). [6]
+     * @param config_ptr Pointer to shared configuration object. [6]
+     * @param log_file_stats_ptr Pointer to shared LogFileStats collector for summary reporting. [6]
+     * @param curr_time Initial simulation time for this load balancer. [6]
+     */
+    LoadBalancer(int LB_id, const Config* config_ptr, LogFileStats* log_file_stats_ptr, int curr_time);
 
-        // log event
-        /**
-         * logs event to LogFileStats file
-         * message: message to log
-         */
-        void log_event(const std::string& message);
+    /**
+     * @brief Destructor; cleans up owned WebServers and any remaining Requests. [6]
+     */
+    ~LoadBalancer();
 
-    private:
-        void add_server();
-        void remove_server();
-        int last_server_check_time;
+    /**
+     * @brief Adds a request to the queue unless it is blocked by firewall IP ranges. [6]
+     *
+     * @param request Pointer to a Request object.
+     * @return true if the request is queued; false if it is blocked (and deleted). [6]
+     */
+    bool add_request(Request* request);
+
+    /**
+     * @brief Sends queued requests to available WebServers. [6]
+     *
+     * Dispatch continues until either the queue is empty or no WebServer is available. [6]
+     */
+    void dispatch_requests();
+
+    /**
+     * @brief Adjusts the number of WebServers based on current queue size thresholds. [6]
+     *
+     * Queue thresholds are scaled by the current server count (see Config values). [6]
+     */
+    void manage_server_count();
+
+    /**
+     * @brief Advances one simulation tick for the load balancer and its WebServers. [6]
+     *
+     * Updates time, processes servers, and finalizes completed requests (recording stats). [6]
+     */
+    void process_time();
+
+    /**
+     * @brief Adds an IP range to the blocked firewall list. [6]
+     *
+     * @param range IPRange to block.
+     */
+    void add_blocked_IP_range(const IPRange& range);
+
+    /**
+     * @brief Returns the number of requests currently waiting in the queue. [6]
+     * @return Current queue size.
+     */
+    int queue_size() const;
+
+    /**
+     * @brief Returns the number of WebServers currently managed by this load balancer. [6]
+     * @return Current server count.
+     */
+    int server_count() const;
+
+    /**
+     * @brief Returns the LogFileStats collector associated with this load balancer. [6]
+     * @return Pointer to LogFileStats.
+     */
+    LogFileStats* get_stats() const;
+
+    /**
+     * @brief Logs an event message to the per-load-balancer log stream (and typically stdout). [6]
+     * @param message Message to log.
+     */
+    void log_event(const std::string& message);
+
+private:
+    /**
+     * @brief Creates and adds a new WebServer to the managed pool. [6]
+     */
+    void add_server();
+
+    /**
+     * @brief Removes one idle WebServer from the pool, if available. [6]
+     */
+    void remove_server();
+
+    /** @brief The last simulation time at which scaling decisions were evaluated. [6] */
+    int last_server_check_time;
 };
 
-#endif //LOADBALANCER_H
+#endif // LOADBALANCER_H

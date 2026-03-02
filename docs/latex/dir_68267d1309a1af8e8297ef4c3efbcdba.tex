@@ -1,0 +1,39 @@
+\hypertarget{dir_68267d1309a1af8e8297ef4c3efbcdba}{}\doxysection{src Directory Reference}
+\label{dir_68267d1309a1af8e8297ef4c3efbcdba}\index{src Directory Reference@{src Directory Reference}}
+\doxysubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{Config_8cpp}{Config.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classConfig}{Config}} class used to store defaults and load simulation settings from a file. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{Config_8h}{Config.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classConfig}{Config}} class, which stores simulation settings and loads them from a config file. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{IPRange_8cpp}{IPRange.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classIPRange}{IPRange}} class used to represent and query an IPv4 address range. \mbox{[}3\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{IPRange_8h}{IPRange.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classIPRange}{IPRange}} class for representing an inclusive IPv4 address range and testing membership. \mbox{[}4\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{LoadBalancer_8cpp}{Load\+Balancer.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class responsible for queuing, dispatching, firewall blocking, dynamic server scaling, and per-\/load-\/balancer logging. \mbox{[}5\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{LoadBalancer_8h}{Load\+Balancer.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class, which manages request queuing, dispatching to Web\+Servers, dynamic server scaling, firewall IP blocking, and per-\/load-\/balancer logging. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{LogFileStats_8cpp}{Log\+File\+Stats.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} class, which collects and summarizes simulation statistics (requests processed/blocked, server scaling actions, queue metrics, and timing averages). \mbox{[}7\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{LogFileStats_8h}{Log\+File\+Stats.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} class, which collects and summarizes simulation statistics (requests processed/blocked, server scaling actions, queue metrics, and timing data). \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{main_8cpp}{main.\+cpp}}
+\item 
+file \mbox{\hyperlink{Request_8cpp}{Request.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classRequest}{Request}} class, which represents a single simulated workload request and provides formatted output for debugging/logging. \mbox{[}10\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{Request_8h}{Request.\+h}}
+\item 
+file \mbox{\hyperlink{RequestGenerator_8cpp}{Request\+Generator.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} class, which creates randomized \mbox{\hyperlink{classRequest}{Request}} objects for the simulation using parameters from the \mbox{\hyperlink{classConfig}{Config}} (processing time bounds, request type distribution, and IP generation). \mbox{[}12\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{RequestGenerator_8h}{Request\+Generator.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} class, which creates randomized \mbox{\hyperlink{classRequest}{Request}} objects for the simulation. \mbox{[}13\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{Simulate_8cpp}{Simulate.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classSimulate}{Simulate}} class, which coordinates configuration loading, component initialization, the main simulation loop, event logging, and final summary reporting. \mbox{[}14\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{Simulate_8h}{Simulate.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classSimulate}{Simulate}} class, which orchestrates configuration loading, initialization, the main simulation loop, global logging, cleanup, and summary reporting. \mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{WebServer_8cpp}{Web\+Server.\+cpp}}
+\begin{DoxyCompactList}\small\item\em Implements the \mbox{\hyperlink{classWebServer}{Web\+Server}} class, which processes Requests over discrete simulation cycles. \mbox{[}16\mbox{]}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{WebServer_8h}{Web\+Server.\+h}}
+\begin{DoxyCompactList}\small\item\em Declares the \mbox{\hyperlink{classWebServer}{Web\+Server}} class, which processes \mbox{\hyperlink{classRequest}{Request}} objects over discrete simulation cycles. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}

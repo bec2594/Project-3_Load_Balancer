@@ -1,0 +1,390 @@
+\hypertarget{classLogFileStats}{}\doxysection{Log\+File\+Stats Class Reference}
+\label{classLogFileStats}\index{LogFileStats@{LogFileStats}}
+
+
+Aggregates counters and timing metrics for the simulation and produces a summary report. \mbox{[}8\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$Log\+File\+Stats.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLogFileStats_ac213ebca5f6e75a181d71ae02f749dc2}{Log\+File\+Stats}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} object and initializes all counters/accumulators. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_aeeb7b8f6aa9dc351879dc3b0d4852f7e}{increment\+\_\+servers\+\_\+added}} ()
+\begin{DoxyCompactList}\small\item\em Increments the \char`\"{}servers added\char`\"{} counter. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_aba71fcbeb2f52fde7aa7904d8cabd744}{increment\+\_\+servers\+\_\+removed}} ()
+\begin{DoxyCompactList}\small\item\em Increments the \char`\"{}servers removed\char`\"{} counter. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_a1d5efab9a21f76998efb6f21ff7827fc}{increment\+\_\+processed}} ()
+\begin{DoxyCompactList}\small\item\em Increments the \char`\"{}requests processed\char`\"{} counter. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_a66854ccf0d1e07345304e654f3ddf241}{increment\+\_\+blocked}} ()
+\begin{DoxyCompactList}\small\item\em Increments the \char`\"{}requests blocked\char`\"{} counter. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_af98bc1ef1b078537fd9d43262e1fe415}{update\+\_\+queue\+\_\+stats}} (int current\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Updates queue statistics with a new observed queue size. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_a0cf0956c40ca82cb5398635f8698dc77}{record\+\_\+completed\+\_\+request}} (const \mbox{\hyperlink{classRequest}{Request}} $\ast$request)
+\begin{DoxyCompactList}\small\item\em Records wait and processing time for a completed request. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_a6b08a9a5d75d28d8b3efb0f35b21cc51}{set\+\_\+final\+\_\+queue\+\_\+size}} (int count)
+\begin{DoxyCompactList}\small\item\em Sets the final number of requests remaining in the queue. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogFileStats_a28c402d5925e2ad8afd707c5b1cb1254}{set\+\_\+final\+\_\+server\+\_\+counts}} (int active, int inactive)
+\begin{DoxyCompactList}\small\item\em Sets the final active/inactive server counts. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classLogFileStats_adc11349b7235b82fff043a02d406455d}{summary}} () const
+\begin{DoxyCompactList}\small\item\em Generates a formatted summary of all collected statistics. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classLogFileStats_a31424124ec85919145e28c62b644a737}{total\+\_\+requests\+\_\+processed}}
+\begin{DoxyCompactList}\small\item\em Total number of requests that completed processing. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_a67b78b732c5c6385821c77d10294e7f3}{total\+\_\+servers\+\_\+added}}
+\begin{DoxyCompactList}\small\item\em Total number of servers added during scaling. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_aa389ef2b7c759e71a738aebb5d1e15df}{total\+\_\+servers\+\_\+removed}}
+\begin{DoxyCompactList}\small\item\em Total number of servers removed during scaling. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_ac2749e971ce193ab116b8d3adfe15295}{max\+\_\+queue\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Maximum queue size observed across all queue samples. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+long long \mbox{\hyperlink{classLogFileStats_a803fdfe379b9b4b672b40b26f6899079}{current\+\_\+queue\+\_\+size\+\_\+sum}}
+\begin{DoxyCompactList}\small\item\em Sum of queue sizes across samples, used to compute average queue size. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_a7326d4843cf26c3d97f7094c434bb888}{number\+\_\+queue\+\_\+samples}}
+\begin{DoxyCompactList}\small\item\em Number of queue samples collected. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_acc29f13d264c39d7b777b5ebd5387d34}{requests\+\_\+blocked}}
+\begin{DoxyCompactList}\small\item\em Total number of requests blocked by firewall/\+IP filtering. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+long long \mbox{\hyperlink{classLogFileStats_a0664d6df2e47b30ed0637d875928ee8f}{total\+\_\+wait\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Sum of wait times for completed requests (start\+\_\+time -\/ arrival\+\_\+time). \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+long long \mbox{\hyperlink{classLogFileStats_ae8b07c081df7c9ccaf018a39ccea58bc}{total\+\_\+processing\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Sum of processing times for completed requests (completion\+\_\+time -\/ start\+\_\+time). \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_ab30bcb0448afaa09842137c1e6de167f}{number\+\_\+requests}}
+\begin{DoxyCompactList}\small\item\em Count of requests included in timing statistics. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Final snapshot fields}\par
+{\em Values intended to be set at the end of the simulation for final reporting. \mbox{[}8\mbox{]} }\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classLogFileStats_ab51c7c18bfd4e3742ca8972c11c8d803}{final\+\_\+requests\+\_\+in\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Number of requests left in the queue at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_a82ac6752d93dddd59ddca6455026dce0}{final\+\_\+active\+\_\+servers}}
+\begin{DoxyCompactList}\small\item\em Number of active (busy) servers at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLogFileStats_a3eb07489543c1189ec892675a49b20fb}{final\+\_\+inactive\+\_\+servers}}
+\begin{DoxyCompactList}\small\item\em Number of inactive (idle) servers at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+Aggregates counters and timing metrics for the simulation and produces a summary report. \mbox{[}8\mbox{]}. 
+
+This class tracks\+:
+\begin{DoxyItemize}
+\item Total processed and blocked requests
+\item Server scaling operations (added/removed)
+\item Queue statistics (max and average sampling)
+\item Wait time and processing time for completed requests
+\item Optional final snapshot values (queue size, active/inactive servers) \mbox{[}8\mbox{]} 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLogFileStats_ac213ebca5f6e75a181d71ae02f749dc2}\label{classLogFileStats_ac213ebca5f6e75a181d71ae02f749dc2}} 
+\index{LogFileStats@{LogFileStats}!LogFileStats@{LogFileStats}}
+\index{LogFileStats@{LogFileStats}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{LogFileStats()}{LogFileStats()}}
+{\footnotesize\ttfamily Log\+File\+Stats\+::\+Log\+File\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} object and initializes all counters/accumulators. \mbox{[}8\mbox{]}. 
+
+Constructs a \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} object with all counters initialized to zero and final snapshot fields initialized to -\/1 (meaning \char`\"{}not provided\char`\"{}). \mbox{[}7\mbox{]}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLogFileStats_a66854ccf0d1e07345304e654f3ddf241}\label{classLogFileStats_a66854ccf0d1e07345304e654f3ddf241}} 
+\index{LogFileStats@{LogFileStats}!increment\_blocked@{increment\_blocked}}
+\index{increment\_blocked@{increment\_blocked}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{increment\_blocked()}{increment\_blocked()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::increment\+\_\+blocked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments the \char`\"{}requests blocked\char`\"{} counter. \mbox{[}8\mbox{]}. 
+
+Increments the counter tracking how many requests were blocked by firewall rules. \mbox{[}7\mbox{]}. \mbox{\Hypertarget{classLogFileStats_a1d5efab9a21f76998efb6f21ff7827fc}\label{classLogFileStats_a1d5efab9a21f76998efb6f21ff7827fc}} 
+\index{LogFileStats@{LogFileStats}!increment\_processed@{increment\_processed}}
+\index{increment\_processed@{increment\_processed}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{increment\_processed()}{increment\_processed()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::increment\+\_\+processed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments the \char`\"{}requests processed\char`\"{} counter. \mbox{[}8\mbox{]}. 
+
+Increments the counter tracking how many requests were fully processed (completed). \mbox{[}7\mbox{]}. \mbox{\Hypertarget{classLogFileStats_aeeb7b8f6aa9dc351879dc3b0d4852f7e}\label{classLogFileStats_aeeb7b8f6aa9dc351879dc3b0d4852f7e}} 
+\index{LogFileStats@{LogFileStats}!increment\_servers\_added@{increment\_servers\_added}}
+\index{increment\_servers\_added@{increment\_servers\_added}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{increment\_servers\_added()}{increment\_servers\_added()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::increment\+\_\+servers\+\_\+added (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments the \char`\"{}servers added\char`\"{} counter. \mbox{[}8\mbox{]}. 
+
+Increments the counter tracking how many servers were added during the simulation. \mbox{[}7\mbox{]}. \mbox{\Hypertarget{classLogFileStats_aba71fcbeb2f52fde7aa7904d8cabd744}\label{classLogFileStats_aba71fcbeb2f52fde7aa7904d8cabd744}} 
+\index{LogFileStats@{LogFileStats}!increment\_servers\_removed@{increment\_servers\_removed}}
+\index{increment\_servers\_removed@{increment\_servers\_removed}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{increment\_servers\_removed()}{increment\_servers\_removed()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::increment\+\_\+servers\+\_\+removed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments the \char`\"{}servers removed\char`\"{} counter. \mbox{[}8\mbox{]}. 
+
+Increments the counter tracking how many servers were removed during the simulation. \mbox{[}7\mbox{]}. \mbox{\Hypertarget{classLogFileStats_a0cf0956c40ca82cb5398635f8698dc77}\label{classLogFileStats_a0cf0956c40ca82cb5398635f8698dc77}} 
+\index{LogFileStats@{LogFileStats}!record\_completed\_request@{record\_completed\_request}}
+\index{record\_completed\_request@{record\_completed\_request}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{record\_completed\_request()}{record\_completed\_request()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::record\+\_\+completed\+\_\+request (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRequest}{Request}} $\ast$}]{request }\end{DoxyParamCaption})}
+
+
+
+Records wait and processing time for a completed request. \mbox{[}8\mbox{]}. 
+
+Records timing data for a completed request. \mbox{[}7\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to a completed \mbox{\hyperlink{classRequest}{Request}} (not owned by \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}}).\\
+\hline
+\end{DoxyParams}
+Adds\+:
+\begin{DoxyItemize}
+\item wait time\+: start\+\_\+time -\/ arrival\+\_\+time
+\item processing time\+: completion\+\_\+time -\/ start\+\_\+time
+\end{DoxyItemize}
+
+Only records timing if the request pointer is valid and both start\+\_\+time and completion\+\_\+time have been set (not equal to -\/1). \mbox{[}7\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to the completed request (not owned by \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}}). \mbox{[}7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLogFileStats_a6b08a9a5d75d28d8b3efb0f35b21cc51}\label{classLogFileStats_a6b08a9a5d75d28d8b3efb0f35b21cc51}} 
+\index{LogFileStats@{LogFileStats}!set\_final\_queue\_size@{set\_final\_queue\_size}}
+\index{set\_final\_queue\_size@{set\_final\_queue\_size}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{set\_final\_queue\_size()}{set\_final\_queue\_size()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::set\+\_\+final\+\_\+queue\+\_\+size (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+Sets the final number of requests remaining in the queue. \mbox{[}8\mbox{]}. 
+
+Sets the number of requests remaining in the queue at the end of the simulation. \mbox{[}7\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & Remaining queue size.\\
+\hline
+{\em count} & Remaining requests in queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLogFileStats_a28c402d5925e2ad8afd707c5b1cb1254}\label{classLogFileStats_a28c402d5925e2ad8afd707c5b1cb1254}} 
+\index{LogFileStats@{LogFileStats}!set\_final\_server\_counts@{set\_final\_server\_counts}}
+\index{set\_final\_server\_counts@{set\_final\_server\_counts}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{set\_final\_server\_counts()}{set\_final\_server\_counts()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::set\+\_\+final\+\_\+server\+\_\+counts (\begin{DoxyParamCaption}\item[{int}]{active,  }\item[{int}]{inactive }\end{DoxyParamCaption})}
+
+
+
+Sets the final active/inactive server counts. \mbox{[}8\mbox{]}. 
+
+Sets the final counts of active and inactive servers at the end of the simulation. \mbox{[}7\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em active} & Number of busy servers. \\
+\hline
+{\em inactive} & Number of idle servers.\\
+\hline
+{\em active} & Number of servers still busy (processing a request). \\
+\hline
+{\em inactive} & Number of servers idle/available. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLogFileStats_adc11349b7235b82fff043a02d406455d}\label{classLogFileStats_adc11349b7235b82fff043a02d406455d}} 
+\index{LogFileStats@{LogFileStats}!summary@{summary}}
+\index{summary@{summary}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily std\+::string Log\+File\+Stats\+::summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Generates a formatted summary of all collected statistics. \mbox{[}8\mbox{]}. 
+
+Produces a formatted multi-\/line summary of all collected simulation statistics. \mbox{[}7\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+Summary string.
+\end{DoxyReturn}
+The summary includes totals (processed, blocked, servers added/removed), queue max/average, request wait and processing averages, and optional final snapshot information (queue and servers). \mbox{[}7\mbox{]}
+
+\begin{DoxyReturn}{Returns}
+Summary string suitable for printing to console and/or logs. \mbox{[}7\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLogFileStats_af98bc1ef1b078537fd9d43262e1fe415}\label{classLogFileStats_af98bc1ef1b078537fd9d43262e1fe415}} 
+\index{LogFileStats@{LogFileStats}!update\_queue\_stats@{update\_queue\_stats}}
+\index{update\_queue\_stats@{update\_queue\_stats}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{update\_queue\_stats()}{update\_queue\_stats()}}
+{\footnotesize\ttfamily void Log\+File\+Stats\+::update\+\_\+queue\+\_\+stats (\begin{DoxyParamCaption}\item[{int}]{current\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Updates queue statistics with a new observed queue size. \mbox{[}8\mbox{]}. 
+
+Updates queue-\/related statistics for the current sample. \mbox{[}7\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+size} & Current queue size to sample.\\
+\hline
+\end{DoxyParams}
+Records the maximum queue size observed so far and accumulates values for computing the average queue size across all samples. \mbox{[}7\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+size} & Current number of requests waiting in the queue. \mbox{[}7\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classLogFileStats_a803fdfe379b9b4b672b40b26f6899079}\label{classLogFileStats_a803fdfe379b9b4b672b40b26f6899079}} 
+\index{LogFileStats@{LogFileStats}!current\_queue\_size\_sum@{current\_queue\_size\_sum}}
+\index{current\_queue\_size\_sum@{current\_queue\_size\_sum}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{current\_queue\_size\_sum}{current\_queue\_size\_sum}}
+{\footnotesize\ttfamily long long Log\+File\+Stats\+::current\+\_\+queue\+\_\+size\+\_\+sum}
+
+
+
+Sum of queue sizes across samples, used to compute average queue size. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a82ac6752d93dddd59ddca6455026dce0}\label{classLogFileStats_a82ac6752d93dddd59ddca6455026dce0}} 
+\index{LogFileStats@{LogFileStats}!final\_active\_servers@{final\_active\_servers}}
+\index{final\_active\_servers@{final\_active\_servers}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{final\_active\_servers}{final\_active\_servers}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::final\+\_\+active\+\_\+servers}
+
+
+
+Number of active (busy) servers at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a3eb07489543c1189ec892675a49b20fb}\label{classLogFileStats_a3eb07489543c1189ec892675a49b20fb}} 
+\index{LogFileStats@{LogFileStats}!final\_inactive\_servers@{final\_inactive\_servers}}
+\index{final\_inactive\_servers@{final\_inactive\_servers}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{final\_inactive\_servers}{final\_inactive\_servers}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::final\+\_\+inactive\+\_\+servers}
+
+
+
+Number of inactive (idle) servers at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_ab51c7c18bfd4e3742ca8972c11c8d803}\label{classLogFileStats_ab51c7c18bfd4e3742ca8972c11c8d803}} 
+\index{LogFileStats@{LogFileStats}!final\_requests\_in\_queue@{final\_requests\_in\_queue}}
+\index{final\_requests\_in\_queue@{final\_requests\_in\_queue}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{final\_requests\_in\_queue}{final\_requests\_in\_queue}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::final\+\_\+requests\+\_\+in\+\_\+queue}
+
+
+
+Number of requests left in the queue at simulation end; -\/1 can indicate \char`\"{}not set\char`\"{}. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_ac2749e971ce193ab116b8d3adfe15295}\label{classLogFileStats_ac2749e971ce193ab116b8d3adfe15295}} 
+\index{LogFileStats@{LogFileStats}!max\_queue\_size@{max\_queue\_size}}
+\index{max\_queue\_size@{max\_queue\_size}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{max\_queue\_size}{max\_queue\_size}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::max\+\_\+queue\+\_\+size}
+
+
+
+Maximum queue size observed across all queue samples. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a7326d4843cf26c3d97f7094c434bb888}\label{classLogFileStats_a7326d4843cf26c3d97f7094c434bb888}} 
+\index{LogFileStats@{LogFileStats}!number\_queue\_samples@{number\_queue\_samples}}
+\index{number\_queue\_samples@{number\_queue\_samples}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{number\_queue\_samples}{number\_queue\_samples}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::number\+\_\+queue\+\_\+samples}
+
+
+
+Number of queue samples collected. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_ab30bcb0448afaa09842137c1e6de167f}\label{classLogFileStats_ab30bcb0448afaa09842137c1e6de167f}} 
+\index{LogFileStats@{LogFileStats}!number\_requests@{number\_requests}}
+\index{number\_requests@{number\_requests}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{number\_requests}{number\_requests}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::number\+\_\+requests}
+
+
+
+Count of requests included in timing statistics. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_acc29f13d264c39d7b777b5ebd5387d34}\label{classLogFileStats_acc29f13d264c39d7b777b5ebd5387d34}} 
+\index{LogFileStats@{LogFileStats}!requests\_blocked@{requests\_blocked}}
+\index{requests\_blocked@{requests\_blocked}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{requests\_blocked}{requests\_blocked}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::requests\+\_\+blocked}
+
+
+
+Total number of requests blocked by firewall/\+IP filtering. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_ae8b07c081df7c9ccaf018a39ccea58bc}\label{classLogFileStats_ae8b07c081df7c9ccaf018a39ccea58bc}} 
+\index{LogFileStats@{LogFileStats}!total\_processing\_time@{total\_processing\_time}}
+\index{total\_processing\_time@{total\_processing\_time}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{total\_processing\_time}{total\_processing\_time}}
+{\footnotesize\ttfamily long long Log\+File\+Stats\+::total\+\_\+processing\+\_\+time}
+
+
+
+Sum of processing times for completed requests (completion\+\_\+time -\/ start\+\_\+time). \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a31424124ec85919145e28c62b644a737}\label{classLogFileStats_a31424124ec85919145e28c62b644a737}} 
+\index{LogFileStats@{LogFileStats}!total\_requests\_processed@{total\_requests\_processed}}
+\index{total\_requests\_processed@{total\_requests\_processed}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{total\_requests\_processed}{total\_requests\_processed}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::total\+\_\+requests\+\_\+processed}
+
+
+
+Total number of requests that completed processing. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a67b78b732c5c6385821c77d10294e7f3}\label{classLogFileStats_a67b78b732c5c6385821c77d10294e7f3}} 
+\index{LogFileStats@{LogFileStats}!total\_servers\_added@{total\_servers\_added}}
+\index{total\_servers\_added@{total\_servers\_added}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{total\_servers\_added}{total\_servers\_added}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::total\+\_\+servers\+\_\+added}
+
+
+
+Total number of servers added during scaling. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_aa389ef2b7c759e71a738aebb5d1e15df}\label{classLogFileStats_aa389ef2b7c759e71a738aebb5d1e15df}} 
+\index{LogFileStats@{LogFileStats}!total\_servers\_removed@{total\_servers\_removed}}
+\index{total\_servers\_removed@{total\_servers\_removed}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{total\_servers\_removed}{total\_servers\_removed}}
+{\footnotesize\ttfamily int Log\+File\+Stats\+::total\+\_\+servers\+\_\+removed}
+
+
+
+Total number of servers removed during scaling. \mbox{[}8\mbox{]}. 
+
+\mbox{\Hypertarget{classLogFileStats_a0664d6df2e47b30ed0637d875928ee8f}\label{classLogFileStats_a0664d6df2e47b30ed0637d875928ee8f}} 
+\index{LogFileStats@{LogFileStats}!total\_wait\_time@{total\_wait\_time}}
+\index{total\_wait\_time@{total\_wait\_time}!LogFileStats@{LogFileStats}}
+\doxysubsubsection{\texorpdfstring{total\_wait\_time}{total\_wait\_time}}
+{\footnotesize\ttfamily long long Log\+File\+Stats\+::total\+\_\+wait\+\_\+time}
+
+
+
+Sum of wait times for completed requests (start\+\_\+time -\/ arrival\+\_\+time). \mbox{[}8\mbox{]}. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{LogFileStats_8h}{Log\+File\+Stats.\+h}}\item 
+src/\mbox{\hyperlink{LogFileStats_8cpp}{Log\+File\+Stats.\+cpp}}\end{DoxyCompactItemize}

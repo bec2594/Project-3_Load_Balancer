@@ -1,0 +1,150 @@
+\hypertarget{classRequest}{}\doxysection{Request Class Reference}
+\label{classRequest}\index{Request@{Request}}
+
+
+{\ttfamily \#include $<$Request.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRequest_a89114ccfd144c50b17d7b85070c733fc}{Request}} (int request\+\_\+id, std\+::string ip\+\_\+in, std\+::string ip\+\_\+out, int process\+\_\+time, char type, int \mbox{\hyperlink{classRequest_ac5bc9c2b1e2832a5d11535ad9973d0ba}{arrival\+\_\+time}})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classRequest}{Request}} with the provided identifiers, IPs, processing time, type, and arrival time. \mbox{[}10\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRequest_adc4e1aadf781e865d6dfec3e5e69f694}{print}} (std\+::ostream \&output) const
+\begin{DoxyCompactList}\small\item\em Prints a human-\/readable representation of the request to an output stream. \mbox{[}10\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classRequest_a026538b5d27774177b27d0552d25fa13}{id}}
+\item 
+std\+::string \mbox{\hyperlink{classRequest_a662aeb6e2c684b9111ec13b14d7ef643}{IP\+\_\+in}}
+\item 
+std\+::string \mbox{\hyperlink{classRequest_af1e71607c4e61c84c0fd3ac02ee092e9}{IP\+\_\+out}}
+\item 
+int \mbox{\hyperlink{classRequest_acc69c067c1d2b35766028e746044e491}{processing\+\_\+time}}
+\item 
+char \mbox{\hyperlink{classRequest_aafa62a577a34455eb8be90021328b236}{job\+\_\+type}}
+\item 
+int \mbox{\hyperlink{classRequest_ac5bc9c2b1e2832a5d11535ad9973d0ba}{arrival\+\_\+time}}
+\item 
+int \mbox{\hyperlink{classRequest_a1c84c36e8974253dd3aad5afdec1c221}{start\+\_\+time}}
+\item 
+int \mbox{\hyperlink{classRequest_afb0d86367b6e728922f21b67267adba1}{completion\+\_\+time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRequest_a89114ccfd144c50b17d7b85070c733fc}\label{classRequest_a89114ccfd144c50b17d7b85070c733fc}} 
+\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily Request\+::\+Request (\begin{DoxyParamCaption}\item[{int}]{request\+\_\+id,  }\item[{std\+::string}]{ip\+\_\+in,  }\item[{std\+::string}]{ip\+\_\+out,  }\item[{int}]{process\+\_\+time,  }\item[{char}]{type,  }\item[{int}]{arrival\+\_\+time\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classRequest}{Request}} with the provided identifiers, IPs, processing time, type, and arrival time. \mbox{[}10\mbox{]}. 
+
+The constructor initializes\+:
+\begin{DoxyItemize}
+\item id with {\ttfamily request\+\_\+id} 
+\item IP\+\_\+in/\+IP\+\_\+out using move semantics to avoid extra string copies
+\item processing\+\_\+time and job\+\_\+type
+\item arrival\+\_\+time
+\item start\+\_\+time and completion\+\_\+time to -\/1 (meaning \char`\"{}not yet started/completed\char`\"{}) \mbox{[}10\mbox{]}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+\_\+id} & Unique numeric id for the request. \mbox{[}11\mbox{]} \\
+\hline
+{\em ip\+\_\+in} & Source IP address (incoming). \mbox{[}11\mbox{]} \\
+\hline
+{\em ip\+\_\+out} & Destination IP address (outgoing). \mbox{[}11\mbox{]} \\
+\hline
+{\em process\+\_\+time} & Number of cycles required to process the request. \mbox{[}11\mbox{]} \\
+\hline
+{\em type} & Job type code (e.\+g., \textquotesingle{}P\textquotesingle{} or \textquotesingle{}S\textquotesingle{}). \mbox{[}11\mbox{]} \\
+\hline
+{\em arrival\+\_\+time\+\_\+param} & Simulation time when the request arrived. \mbox{[}10\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRequest_adc4e1aadf781e865d6dfec3e5e69f694}\label{classRequest_adc4e1aadf781e865d6dfec3e5e69f694}} 
+\index{Request@{Request}!print@{print}}
+\index{print@{print}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Request\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+
+
+Prints a human-\/readable representation of the request to an output stream. \mbox{[}10\mbox{]}. 
+
+Always prints the basic request fields (id, IPs, processing time, type, arrival time). If the request has started, prints start\+\_\+time. If the request has completed, prints completion\+\_\+time and derived metrics\+:
+\begin{DoxyItemize}
+\item Total System Time = completion\+\_\+time -\/ arrival\+\_\+time
+\item Wait Time = start\+\_\+time -\/ arrival\+\_\+time \mbox{[}10\mbox{]}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream to write to (e.\+g., std\+::cout or a file stream). \mbox{[}10\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRequest_ac5bc9c2b1e2832a5d11535ad9973d0ba}\label{classRequest_ac5bc9c2b1e2832a5d11535ad9973d0ba}} 
+\index{Request@{Request}!arrival\_time@{arrival\_time}}
+\index{arrival\_time@{arrival\_time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{arrival\_time}{arrival\_time}}
+{\footnotesize\ttfamily int Request\+::arrival\+\_\+time}
+
+\mbox{\Hypertarget{classRequest_afb0d86367b6e728922f21b67267adba1}\label{classRequest_afb0d86367b6e728922f21b67267adba1}} 
+\index{Request@{Request}!completion\_time@{completion\_time}}
+\index{completion\_time@{completion\_time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{completion\_time}{completion\_time}}
+{\footnotesize\ttfamily int Request\+::completion\+\_\+time}
+
+\mbox{\Hypertarget{classRequest_a026538b5d27774177b27d0552d25fa13}\label{classRequest_a026538b5d27774177b27d0552d25fa13}} 
+\index{Request@{Request}!id@{id}}
+\index{id@{id}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Request\+::id}
+
+\mbox{\Hypertarget{classRequest_a662aeb6e2c684b9111ec13b14d7ef643}\label{classRequest_a662aeb6e2c684b9111ec13b14d7ef643}} 
+\index{Request@{Request}!IP\_in@{IP\_in}}
+\index{IP\_in@{IP\_in}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{IP\_in}{IP\_in}}
+{\footnotesize\ttfamily std\+::string Request\+::\+IP\+\_\+in}
+
+\mbox{\Hypertarget{classRequest_af1e71607c4e61c84c0fd3ac02ee092e9}\label{classRequest_af1e71607c4e61c84c0fd3ac02ee092e9}} 
+\index{Request@{Request}!IP\_out@{IP\_out}}
+\index{IP\_out@{IP\_out}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{IP\_out}{IP\_out}}
+{\footnotesize\ttfamily std\+::string Request\+::\+IP\+\_\+out}
+
+\mbox{\Hypertarget{classRequest_aafa62a577a34455eb8be90021328b236}\label{classRequest_aafa62a577a34455eb8be90021328b236}} 
+\index{Request@{Request}!job\_type@{job\_type}}
+\index{job\_type@{job\_type}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{job\_type}{job\_type}}
+{\footnotesize\ttfamily char Request\+::job\+\_\+type}
+
+\mbox{\Hypertarget{classRequest_acc69c067c1d2b35766028e746044e491}\label{classRequest_acc69c067c1d2b35766028e746044e491}} 
+\index{Request@{Request}!processing\_time@{processing\_time}}
+\index{processing\_time@{processing\_time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{processing\_time}{processing\_time}}
+{\footnotesize\ttfamily int Request\+::processing\+\_\+time}
+
+\mbox{\Hypertarget{classRequest_a1c84c36e8974253dd3aad5afdec1c221}\label{classRequest_a1c84c36e8974253dd3aad5afdec1c221}} 
+\index{Request@{Request}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!Request@{Request}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily int Request\+::start\+\_\+time}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Request_8h}{Request.\+h}}\item 
+src/\mbox{\hyperlink{Request_8cpp}{Request.\+cpp}}\end{DoxyCompactItemize}

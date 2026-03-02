@@ -1,0 +1,168 @@
+\hypertarget{classSimulate}{}\doxysection{Simulate Class Reference}
+\label{classSimulate}\index{Simulate@{Simulate}}
+
+
+High-\/level simulation controller that owns the main components and drives the simulation. \mbox{[}15\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$Simulate.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSimulate_aa99e318493e7f8278e2498864de80ac3}{Simulate}} (const std\+::string \&config\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Constructs the simulation controller and attempts to load the configuration file. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSimulate_a4481a2162cc4e53fe401ccf273ec5942}{$\sim$\+Simulate}} ()
+\begin{DoxyCompactList}\small\item\em Destructor; releases owned resources and closes the global log file. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSimulate_a45142e9c77166a7d86d021bf7513d86c}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes simulation components (generator, stats collector, load balancer) and seeds initial state. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSimulate_a867b1fb0197d12a77059f3544f44a88f}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the simulation loop for the configured number of cycles. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSimulate_aecfa30b21b3cf44ea2bb47cb415b5214}{output\+\_\+summary}} ()
+\begin{DoxyCompactList}\small\item\em Computes and outputs the final simulation summary to stdout and the log. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSimulate_a8be103dcf7c90c6bb101df9cdc9475af}{cleanup}} ()
+\begin{DoxyCompactList}\small\item\em Deletes dynamically allocated components and resets pointers to nullptr. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+High-\/level simulation controller that owns the main components and drives the simulation. \mbox{[}15\mbox{]}. 
+
+\mbox{\hyperlink{classSimulate}{Simulate}} is responsible for\+:
+\begin{DoxyItemize}
+\item Loading configuration values (\mbox{\hyperlink{classConfig}{Config}}) \mbox{[}15\mbox{]}
+\item Creating the \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}}, \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector, and main \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}
+\item Seeding initial conditions (blocked IP ranges and initial queue fill) \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}
+\item Running the simulation loop for \mbox{\hyperlink{classConfig_a521996e25cf63996d543463356de4c66}{Config\+::duration\+\_\+cycles}} ticks \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}
+\item Writing events to a global log file and printing a final summary \mbox{[}14\mbox{]}\mbox{[}15\mbox{]} 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSimulate_aa99e318493e7f8278e2498864de80ac3}\label{classSimulate_aa99e318493e7f8278e2498864de80ac3}} 
+\index{Simulate@{Simulate}!Simulate@{Simulate}}
+\index{Simulate@{Simulate}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{Simulate()}{Simulate()}}
+{\footnotesize\ttfamily Simulate\+::\+Simulate (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{config\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Constructs the simulation controller and attempts to load the configuration file. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Constructs a \mbox{\hyperlink{classSimulate}{Simulate}} instance and loads configuration / opens the global log file. \mbox{[}14\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file} & Path to the configuration file used to initialize \mbox{\hyperlink{classConfig}{Config}}. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item Attempts to load simulation settings from {\ttfamily config\+\_\+file} via \mbox{\hyperlink{classConfig_aa9af335c875d49cecbab1dc67b001727}{Config\+::load\+\_\+from\+\_\+file()}}. \mbox{[}14\mbox{]}
+\item Opens a global simulation log file using \mbox{\hyperlink{classConfig_ac1c1430966228ecdcf610eb132bd2a04}{Config\+::log\+\_\+file\+\_\+name}} with a \char`\"{}.\+txt\char`\"{} suffix. \mbox{[}14\mbox{]}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file} & Path to the configuration file to load. \mbox{[}14\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSimulate_a4481a2162cc4e53fe401ccf273ec5942}\label{classSimulate_a4481a2162cc4e53fe401ccf273ec5942}} 
+\index{Simulate@{Simulate}!````~Simulate@{$\sim$Simulate}}
+\index{````~Simulate@{$\sim$Simulate}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{$\sim$Simulate()}{~Simulate()}}
+{\footnotesize\ttfamily Simulate\+::$\sim$\+Simulate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor; releases owned resources and closes the global log file. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Destructor; releases allocated components and closes the global log file. \mbox{[}14\mbox{]}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSimulate_a8be103dcf7c90c6bb101df9cdc9475af}\label{classSimulate_a8be103dcf7c90c6bb101df9cdc9475af}} 
+\index{Simulate@{Simulate}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void Simulate\+::cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deletes dynamically allocated components and resets pointers to nullptr. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Frees heap-\/allocated simulation components and resets pointers to nullptr. \mbox{[}14\mbox{]}.
+
+Deletes\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}}
+\item \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} (main\+\_\+stats\+\_\+collector)
+\item \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} (which in turn deletes its owned Web\+Servers/\+Requests) \mbox{[}5\mbox{]}\mbox{[}14\mbox{]}
+\end{DoxyItemize}
+
+Also writes cleanup events to the global log. \mbox{[}14\mbox{]} \mbox{\Hypertarget{classSimulate_a45142e9c77166a7d86d021bf7513d86c}\label{classSimulate_a45142e9c77166a7d86d021bf7513d86c}} 
+\index{Simulate@{Simulate}!initialize@{initialize}}
+\index{initialize@{initialize}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily bool Simulate\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes simulation components (generator, stats collector, load balancer) and seeds initial state. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Initializes major simulation components (generator, stats collector, load balancer) and seeds initial state. \mbox{[}14\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+true if initialization succeeds; false otherwise (current implementation returns true). \mbox{[}14\mbox{]}
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Allocates \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} using the loaded \mbox{\hyperlink{classConfig}{Config}}. \mbox{[}14\mbox{]}
+\item Allocates \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector. \mbox{[}14\mbox{]}
+\item Allocates \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} with id=1 and the shared Config/\+Log\+File\+Stats. \mbox{[}14\mbox{]}
+\item Adds the initial blocked IP range and initial queue contents. \mbox{[}14\mbox{]}
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+true (this implementation always returns true). \mbox{[}14\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSimulate_aecfa30b21b3cf44ea2bb47cb415b5214}\label{classSimulate_aecfa30b21b3cf44ea2bb47cb415b5214}} 
+\index{Simulate@{Simulate}!output\_summary@{output\_summary}}
+\index{output\_summary@{output\_summary}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{output\_summary()}{output\_summary()}}
+{\footnotesize\ttfamily void Simulate\+::output\+\_\+summary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Computes and outputs the final simulation summary to stdout and the log. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Computes and outputs final summary statistics. \mbox{[}14\mbox{]}.
+
+
+\begin{DoxyItemize}
+\item Counts remaining requests in the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} queue. \mbox{[}14\mbox{]}
+\item Counts active vs inactive servers by checking \mbox{\hyperlink{classWebServer_a798e2ec912ceaa7c26f14639874d30b7}{Web\+Server\+::is\+\_\+available()}}. \mbox{[}14\mbox{]}
+\item Stores these final snapshot values in \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} and prints the generated summary. \mbox{[}7\mbox{]}\mbox{[}14\mbox{]} 
+\end{DoxyItemize}\mbox{\Hypertarget{classSimulate_a867b1fb0197d12a77059f3544f44a88f}\label{classSimulate_a867b1fb0197d12a77059f3544f44a88f}} 
+\index{Simulate@{Simulate}!run@{run}}
+\index{run@{run}!Simulate@{Simulate}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Simulate\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs the simulation loop for the configured number of cycles. \mbox{[}14\mbox{]}\mbox{[}15\mbox{]}. 
+
+Runs the simulation loop for the configured number of cycles. \mbox{[}14\mbox{]}.
+
+For each cycle\+:
+\begin{DoxyItemize}
+\item With probability \mbox{\hyperlink{classConfig_a610d70e5c9d91e33fa07c1e97fbd4d47}{Config\+::new\+\_\+request\+\_\+probability}}, generates a new \mbox{\hyperlink{classRequest}{Request}} and submits it. \mbox{[}14\mbox{]}
+\item Advances load balancer/server time (process\+\_\+time()) and collects queue stats. \mbox{[}5\mbox{]}
+\item Performs dynamic scaling (manage\+\_\+server\+\_\+count()) based on thresholds. \mbox{[}5\mbox{]}
+\item Dispatches queued requests to available servers (dispatch\+\_\+requests()). \mbox{[}5\mbox{]} 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Simulate_8h}{Simulate.\+h}}\item 
+src/\mbox{\hyperlink{Simulate_8cpp}{Simulate.\+cpp}}\end{DoxyCompactItemize}

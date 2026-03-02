@@ -1,0 +1,250 @@
+\hypertarget{classConfig}{}\doxysection{Config Class Reference}
+\label{classConfig}\index{Config@{Config}}
+
+
+Holds configuration parameters for the load balancer simulation.  
+
+
+
+
+{\ttfamily \#include $<$Config.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConfig_abd0c571c116924871e30444b192b792a}{Config}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classConfig}{Config}} object with default settings. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classConfig_af4cdb03bf063273993a444533f992750}{trim\+\_\+whitespace}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Trims leading and trailing whitespace from a string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classConfig_aa9af335c875d49cecbab1dc67b001727}{load\+\_\+from\+\_\+file}} (const std\+::string \&config\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Loads configuration parameters from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classConfig_aee149cda08bedc21bb75a16ecbe5a3cd}{initial\+\_\+server\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Initial number of \mbox{\hyperlink{classWebServer}{Web\+Server}} instances to create. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_a60df68eeb90199ac72865e9d9630fa7f}{queue\+\_\+low\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Lower queue threshold multiplier used for scaling server count. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_ac6b90c63fe798223c42b06bd83c47ab5}{queue\+\_\+high\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Upper queue threshold multiplier used for scaling server count. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classConfig_a84c0beb438bf7c0a6c5c9038d86957c4}{initial\+\_\+queue\+\_\+fill}}
+\begin{DoxyCompactList}\small\item\em Initial queue fill factor (used to seed the request queue at startup). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_ade1336b2cb1a1e26c534bc26b74adf85}{min\+\_\+process\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Minimum request processing time (in cycles). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_a0945dc2bf548c6c3be538534e3d31566}{max\+\_\+process\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Maximum request processing time (in cycles). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_a521996e25cf63996d543463356de4c66}{duration\+\_\+cycles}}
+\begin{DoxyCompactList}\small\item\em Total simulation runtime duration (in cycles). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classConfig_ab5aa0a0ae7e1183cf557a4d27881b11d}{server\+\_\+check\+\_\+interval\+\_\+cycles}}
+\begin{DoxyCompactList}\small\item\em Interval (in cycles) between server add/remove checks. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classConfig_a610d70e5c9d91e33fa07c1e97fbd4d47}{new\+\_\+request\+\_\+probability}}
+\begin{DoxyCompactList}\small\item\em Probability in \mbox{[}0.\+0, 1.\+0\mbox{]} that a new request arrives in a given cycle. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classConfig_ac1c1430966228ecdcf610eb132bd2a04}{log\+\_\+file\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Base name used for log output files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Holds configuration parameters for the load balancer simulation. 
+
+This class provides default values (via the constructor) and supports loading overrides from a colon-\/separated configuration file. See \mbox{\hyperlink{classConfig_aa9af335c875d49cecbab1dc67b001727}{load\+\_\+from\+\_\+file()}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConfig_abd0c571c116924871e30444b192b792a}\label{classConfig_abd0c571c116924871e30444b192b792a}} 
+\index{Config@{Config}!Config@{Config}}
+\index{Config@{Config}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{Config()}{Config()}}
+{\footnotesize\ttfamily Config\+::\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classConfig}{Config}} object with default settings. 
+
+Default constructor that initializes all configuration fields to reasonable defaults.
+
+These defaults are used if no configuration file is provided or if specific keys are missing. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConfig_aa9af335c875d49cecbab1dc67b001727}\label{classConfig_aa9af335c875d49cecbab1dc67b001727}} 
+\index{Config@{Config}!load\_from\_file@{load\_from\_file}}
+\index{load\_from\_file@{load\_from\_file}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{load\_from\_file()}{load\_from\_file()}}
+{\footnotesize\ttfamily bool Config\+::load\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{config\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Loads configuration parameters from a file. 
+
+Loads configuration parameters from a colon-\/separated configuration file.
+
+The file is expected to contain lines formatted as\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{key: value}
+
+\end{DoxyCode}
+ Empty lines and lines beginning with \textquotesingle{}\#\textquotesingle{} are ignored.
+
+Recognized keys include (as implemented)\+: initial\+\_\+server\+\_\+count, queue\+\_\+low\+\_\+count, queue\+\_\+high\+\_\+count, initial\+\_\+queue\+\_\+fill, min\+\_\+process\+\_\+time, max\+\_\+process\+\_\+time, duration\+\_\+cycles, server\+\_\+check\+\_\+interval\+\_\+cycles, new\+\_\+request\+\_\+probability, log\+\_\+file\+\_\+name \mbox{[}1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file} & Path to the configuration file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the file opens successfully and is parsed; false otherwise.
+\end{DoxyReturn}
+The loader\+:
+\begin{DoxyItemize}
+\item Opens the file at {\ttfamily config\+\_\+file} 
+\item Ignores empty lines and lines beginning with \textquotesingle{}\#\textquotesingle{}
+\item Expects \char`\"{}key\+: value\char`\"{} pairs
+\item Trims whitespace from keys/values
+\item Assigns recognized keys to member variables
+\item Prints a warning for unknown keys
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+file} & Path to the configuration file to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the file could be opened and parsed; false if the file could not be opened. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classConfig_af4cdb03bf063273993a444533f992750}\label{classConfig_af4cdb03bf063273993a444533f992750}} 
+\index{Config@{Config}!trim\_whitespace@{trim\_whitespace}}
+\index{trim\_whitespace@{trim\_whitespace}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{trim\_whitespace()}{trim\_whitespace()}}
+{\footnotesize\ttfamily std\+::string Config\+::trim\+\_\+whitespace (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Trims leading and trailing whitespace from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Input string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A trimmed copy of {\ttfamily str}.
+\end{DoxyReturn}
+Whitespace characters removed include spaces, tabs, and common newline/control characters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Input string that may contain leading/trailing whitespace. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new string with leading/trailing whitespace removed. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classConfig_a521996e25cf63996d543463356de4c66}\label{classConfig_a521996e25cf63996d543463356de4c66}} 
+\index{Config@{Config}!duration\_cycles@{duration\_cycles}}
+\index{duration\_cycles@{duration\_cycles}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{duration\_cycles}{duration\_cycles}}
+{\footnotesize\ttfamily int Config\+::duration\+\_\+cycles}
+
+
+
+Total simulation runtime duration (in cycles). 
+
+\mbox{\Hypertarget{classConfig_a84c0beb438bf7c0a6c5c9038d86957c4}\label{classConfig_a84c0beb438bf7c0a6c5c9038d86957c4}} 
+\index{Config@{Config}!initial\_queue\_fill@{initial\_queue\_fill}}
+\index{initial\_queue\_fill@{initial\_queue\_fill}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{initial\_queue\_fill}{initial\_queue\_fill}}
+{\footnotesize\ttfamily double Config\+::initial\+\_\+queue\+\_\+fill}
+
+
+
+Initial queue fill factor (used to seed the request queue at startup). 
+
+\mbox{\Hypertarget{classConfig_aee149cda08bedc21bb75a16ecbe5a3cd}\label{classConfig_aee149cda08bedc21bb75a16ecbe5a3cd}} 
+\index{Config@{Config}!initial\_server\_count@{initial\_server\_count}}
+\index{initial\_server\_count@{initial\_server\_count}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{initial\_server\_count}{initial\_server\_count}}
+{\footnotesize\ttfamily int Config\+::initial\+\_\+server\+\_\+count}
+
+
+
+Initial number of \mbox{\hyperlink{classWebServer}{Web\+Server}} instances to create. 
+
+\mbox{\Hypertarget{classConfig_ac1c1430966228ecdcf610eb132bd2a04}\label{classConfig_ac1c1430966228ecdcf610eb132bd2a04}} 
+\index{Config@{Config}!log\_file\_name@{log\_file\_name}}
+\index{log\_file\_name@{log\_file\_name}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{log\_file\_name}{log\_file\_name}}
+{\footnotesize\ttfamily std\+::string Config\+::log\+\_\+file\+\_\+name}
+
+
+
+Base name used for log output files. 
+
+\mbox{\Hypertarget{classConfig_a0945dc2bf548c6c3be538534e3d31566}\label{classConfig_a0945dc2bf548c6c3be538534e3d31566}} 
+\index{Config@{Config}!max\_process\_time@{max\_process\_time}}
+\index{max\_process\_time@{max\_process\_time}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{max\_process\_time}{max\_process\_time}}
+{\footnotesize\ttfamily int Config\+::max\+\_\+process\+\_\+time}
+
+
+
+Maximum request processing time (in cycles). 
+
+\mbox{\Hypertarget{classConfig_ade1336b2cb1a1e26c534bc26b74adf85}\label{classConfig_ade1336b2cb1a1e26c534bc26b74adf85}} 
+\index{Config@{Config}!min\_process\_time@{min\_process\_time}}
+\index{min\_process\_time@{min\_process\_time}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{min\_process\_time}{min\_process\_time}}
+{\footnotesize\ttfamily int Config\+::min\+\_\+process\+\_\+time}
+
+
+
+Minimum request processing time (in cycles). 
+
+\mbox{\Hypertarget{classConfig_a610d70e5c9d91e33fa07c1e97fbd4d47}\label{classConfig_a610d70e5c9d91e33fa07c1e97fbd4d47}} 
+\index{Config@{Config}!new\_request\_probability@{new\_request\_probability}}
+\index{new\_request\_probability@{new\_request\_probability}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{new\_request\_probability}{new\_request\_probability}}
+{\footnotesize\ttfamily double Config\+::new\+\_\+request\+\_\+probability}
+
+
+
+Probability in \mbox{[}0.\+0, 1.\+0\mbox{]} that a new request arrives in a given cycle. 
+
+\mbox{\Hypertarget{classConfig_ac6b90c63fe798223c42b06bd83c47ab5}\label{classConfig_ac6b90c63fe798223c42b06bd83c47ab5}} 
+\index{Config@{Config}!queue\_high\_count@{queue\_high\_count}}
+\index{queue\_high\_count@{queue\_high\_count}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{queue\_high\_count}{queue\_high\_count}}
+{\footnotesize\ttfamily int Config\+::queue\+\_\+high\+\_\+count}
+
+
+
+Upper queue threshold multiplier used for scaling server count. 
+
+\mbox{\Hypertarget{classConfig_a60df68eeb90199ac72865e9d9630fa7f}\label{classConfig_a60df68eeb90199ac72865e9d9630fa7f}} 
+\index{Config@{Config}!queue\_low\_count@{queue\_low\_count}}
+\index{queue\_low\_count@{queue\_low\_count}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{queue\_low\_count}{queue\_low\_count}}
+{\footnotesize\ttfamily int Config\+::queue\+\_\+low\+\_\+count}
+
+
+
+Lower queue threshold multiplier used for scaling server count. 
+
+\mbox{\Hypertarget{classConfig_ab5aa0a0ae7e1183cf557a4d27881b11d}\label{classConfig_ab5aa0a0ae7e1183cf557a4d27881b11d}} 
+\index{Config@{Config}!server\_check\_interval\_cycles@{server\_check\_interval\_cycles}}
+\index{server\_check\_interval\_cycles@{server\_check\_interval\_cycles}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{server\_check\_interval\_cycles}{server\_check\_interval\_cycles}}
+{\footnotesize\ttfamily int Config\+::server\+\_\+check\+\_\+interval\+\_\+cycles}
+
+
+
+Interval (in cycles) between server add/remove checks. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Config_8h}{Config.\+h}}\item 
+src/\mbox{\hyperlink{Config_8cpp}{Config.\+cpp}}\end{DoxyCompactItemize}

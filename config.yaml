@@ -3,33 +3,35 @@
 # This file is in YAML (YAML Ain't Markup Language) format.
 #
 
-# Initial number of WebServers for the LoadBalancer
+# Initial number of WebServers for the LoadBalancer. [18]
 initial_server_count: 90
 
-# Queue size threshold multipliers (multiplied by current_server_count)
-# If queue size drops below (queue_low_count_multiplier * server_count), consider removing a server
-queue_low_count_multiplier: 50
-# If queue size exceeds (queue_high_count_multiplier * server_count), consider adding a server
-queue_high_count_multiplier: 80
+# Queue size threshold multipliers (multiplied by current_server_count). [18]
+# If queue size drops below (queue_low_count * server_count), consider removing a server. [18]
+queue_low_count: 50
 
-# Multiplier for initial queue fill (server_count * initial_queue_fill_multiplier)
-initial_queue_fill_multiplier: 0.5
+# If queue size exceeds (queue_high_count * server_count), consider adding a server. [18]
+queue_high_count: 80
 
-# Minimum and maximum processing time for a request (in clock cycles)
+# Multiplier for initial queue fill (server_count * initial_queue_fill). [18]
+initial_queue_fill: 0.5
+
+# Minimum and maximum processing time for a request (in clock cycles). [18]
 min_process_time: 10
 max_process_time: 100
 
-# Total duration of the simulation in clock cycles
+# Total duration of the simulation in clock cycles. [18]
 duration_cycles: 20000
 
-# Number of clock cycles to wait between server add/remove checks
+# Number of clock cycles to wait between server add/remove checks. [18]
 server_check_interval_cycles: 50
 
-# Probability (0.0 to 1.0) of a new request arriving in any given clock cycle
-new_request_prob: 0.3
+# Probability (0.0 to 1.0) of a new request arriving in any given clock cycle. [18]
+new_request_probability: 0.3
 
-# Probability (0.0 to 1.0) that generated IP_in will fall into a 'blocked' range
+# Probability (0.0 to 1.0) that generated IP_in will fall into a 'blocked' range. [18]
+# NOTE: This key is currently not loaded/used by Config::load_from_file(). [1]
 blocked_ip_generation_chance: 0.2
 
-# Base name for log files (e.g., simulation_log.txt, simulation_log_LB1.txt)
+# Base name for log files (e.g., simulation_log.txt, simulation_log_LB1.txt). [18]
 log_file_name: simulation_log

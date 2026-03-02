@@ -1,0 +1,116 @@
+\hypertarget{classIPRange}{}\doxysection{IPRange Class Reference}
+\label{classIPRange}\index{IPRange@{IPRange}}
+
+
+Represents a start and end IPv4 address range and provides a containment test. \mbox{[}4\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$IPRange.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIPRange_a5d74741d91367922b08cf7f1f110c004}{IPRange}} (std\+::string start, std\+::string end)
+\begin{DoxyCompactList}\small\item\em Constructs an inclusive IPv4 range from {\ttfamily start} to {\ttfamily end}. \mbox{[}4\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classIPRange_aeb3db3f7551b3052a6537e476705092f}{contains}} (const std\+::string \&ip) const
+\begin{DoxyCompactList}\small\item\em Checks whether an IPv4 address lies within this range (inclusive). \mbox{[}4\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classIPRange_a97b7ffd0d021a467080d9214bd028cd1}{start\+\_\+ip}}
+\begin{DoxyCompactList}\small\item\em Starting IPv4 address (dotted-\/decimal string). \mbox{[}4\mbox{]}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classIPRange_a9fc6fd558af4e5ddfba5e5a5543013f0}{end\+\_\+ip}}
+\begin{DoxyCompactList}\small\item\em Ending IPv4 address (dotted-\/decimal string). \mbox{[}4\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a start and end IPv4 address range and provides a containment test. \mbox{[}4\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classIPRange_a5d74741d91367922b08cf7f1f110c004}\label{classIPRange_a5d74741d91367922b08cf7f1f110c004}} 
+\index{IPRange@{IPRange}!IPRange@{IPRange}}
+\index{IPRange@{IPRange}!IPRange@{IPRange}}
+\doxysubsubsection{\texorpdfstring{IPRange()}{IPRange()}}
+{\footnotesize\ttfamily IPRange\+::\+IPRange (\begin{DoxyParamCaption}\item[{std\+::string}]{start,  }\item[{std\+::string}]{end }\end{DoxyParamCaption})}
+
+
+
+Constructs an inclusive IPv4 range from {\ttfamily start} to {\ttfamily end}. \mbox{[}4\mbox{]}. 
+
+Constructs an \mbox{\hyperlink{classIPRange}{IPRange}} from a starting and ending IPv4 address (inclusive). \mbox{[}3\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Starting IPv4 address in dotted-\/decimal notation. \mbox{[}4\mbox{]} \\
+\hline
+{\em end} & Ending IPv4 address in dotted-\/decimal notation. \mbox{[}4\mbox{]}\\
+\hline
+{\em start} & Starting IPv4 address in dotted-\/decimal notation (e.\+g., \char`\"{}10.\+0.\+0.\+1\char`\"{}). \mbox{[}3\mbox{]} \\
+\hline
+{\em end} & Ending IPv4 address in dotted-\/decimal notation (e.\+g., \char`\"{}10.\+1.\+0.\+1\char`\"{}). \mbox{[}3\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIPRange_aeb3db3f7551b3052a6537e476705092f}\label{classIPRange_aeb3db3f7551b3052a6537e476705092f}} 
+\index{IPRange@{IPRange}!contains@{contains}}
+\index{contains@{contains}!IPRange@{IPRange}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool IPRange\+::contains (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip }\end{DoxyParamCaption}) const}
+
+
+
+Checks whether an IPv4 address lies within this range (inclusive). \mbox{[}4\mbox{]}. 
+
+Checks whether the provided IPv4 address lies within this range (inclusive). \mbox{[}3\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & IPv4 address to check in dotted-\/decimal notation. \mbox{[}4\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if {\ttfamily ip} is between start\+\_\+ip and end\+\_\+ip (inclusive), otherwise false. \mbox{[}4\mbox{]}
+\end{DoxyReturn}
+The check converts all IP strings to a comparable 32-\/bit integer form and then performs an inclusive range comparison. \mbox{[}3\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & IPv4 address to test in dotted-\/decimal notation. \mbox{[}3\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if {\ttfamily ip} is between start\+\_\+ip and end\+\_\+ip (inclusive), otherwise false. \mbox{[}3\mbox{]} 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classIPRange_a9fc6fd558af4e5ddfba5e5a5543013f0}\label{classIPRange_a9fc6fd558af4e5ddfba5e5a5543013f0}} 
+\index{IPRange@{IPRange}!end\_ip@{end\_ip}}
+\index{end\_ip@{end\_ip}!IPRange@{IPRange}}
+\doxysubsubsection{\texorpdfstring{end\_ip}{end\_ip}}
+{\footnotesize\ttfamily std\+::string IPRange\+::end\+\_\+ip}
+
+
+
+Ending IPv4 address (dotted-\/decimal string). \mbox{[}4\mbox{]}. 
+
+\mbox{\Hypertarget{classIPRange_a97b7ffd0d021a467080d9214bd028cd1}\label{classIPRange_a97b7ffd0d021a467080d9214bd028cd1}} 
+\index{IPRange@{IPRange}!start\_ip@{start\_ip}}
+\index{start\_ip@{start\_ip}!IPRange@{IPRange}}
+\doxysubsubsection{\texorpdfstring{start\_ip}{start\_ip}}
+{\footnotesize\ttfamily std\+::string IPRange\+::start\+\_\+ip}
+
+
+
+Starting IPv4 address (dotted-\/decimal string). \mbox{[}4\mbox{]}. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{IPRange_8h}{IPRange.\+h}}\item 
+src/\mbox{\hyperlink{IPRange_8cpp}{IPRange.\+cpp}}\end{DoxyCompactItemize}

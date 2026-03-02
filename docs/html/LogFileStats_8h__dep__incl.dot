@@ -1,0 +1,20 @@
+digraph "src/LogFileStats.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/LogFileStats.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Declares the LogFileStats class, which collects and summarizes simulation statistics (requests proces..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="src/LoadBalancer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LoadBalancer_8h.html",tooltip="Declares the LoadBalancer class, which manages request queuing, dispatching to WebServers,..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="src/LoadBalancer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LoadBalancer_8cpp.html",tooltip="Implements the LoadBalancer class responsible for queuing, dispatching, firewall blocking,..."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="src/Simulate.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Simulate_8h.html",tooltip="Declares the Simulate class, which orchestrates configuration loading, initialization,..."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="src/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip=" "];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="src/Simulate.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Simulate_8cpp.html",tooltip="Implements the Simulate class, which coordinates configuration loading, component initialization,..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="src/LogFileStats.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LogFileStats_8cpp.html",tooltip="Implements the LogFileStats class, which collects and summarizes simulation statistics (requests proc..."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

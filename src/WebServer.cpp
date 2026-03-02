@@ -1,21 +1,33 @@
+/**
+ * @file WebServer.cpp
+ * @brief Implements the WebServer class, which processes Requests over discrete simulation cycles. [16]
+ */
+
 #include "WebServer.h"
 
-// Constructor
-// No request made yet so current request, remaining cycles, busy all set to nothing and false
-WebServer::WebServer(int server_id) : 
+/**
+ * @brief Constructs a WebServer with a unique identifier and no active request. [16]
+ *
+ * @param server_id Unique id assigned to this server instance. [17]
+ */
+WebServer::WebServer(int server_id) :
     id(server_id),
     current_request(nullptr),
     remaining_cycles(0),
-    busy(false) {}
+    busy(false)
+{}
 
-// server takes request if not busy, and request is good (not nullptr)
-// update each variable in webserver
 /**
- * current_request is inputted request
- * remaining cycles is inputted request's processing time
- * busy set to true
+ * @brief Attempts to assign a Request to this server for processing. [16]
+ *
+ * @details
+ * If the server is not busy and @p request is non-null, the server takes ownership of the
+ * request pointer, initializes its remaining cycle count from Request::processing_time,
+ * and marks itself busy. [16]
+ *
+ * @param request Pointer to a Request to be processed.
+ * @return true if the request was accepted; false if the server was busy or @p request was null. [17]
  */
-
 bool WebServer::take_request(Request* request) {
     if(!busy && request != nullptr) {
         current_request = request;
@@ -26,22 +38,33 @@ bool WebServer::take_request(Request* request) {
     return false;
 }
 
-// decrement the remaining cycles for the web server's request
-// handling the request completion (when cycles = 0) is done in the process_request and the load balancer processing time functions
+/**
+ * @brief Advances the server by one simulation tick. [16]
+ *
+ * @details
+ * If the server is busy, decrements remaining_cycles by one. Completion handling is performed
+ * elsewhere by checking remaining_cycles and calling processed_request(). [16]
+ */
 void WebServer::process_time() {
     if (busy) {
         remaining_cycles--;
     }
 }
 
-// check if Server is available by checking if there is a request
-// if available the request should be a nullptr (that is what it is initialized too as well)
+/**
+ * @brief Indicates whether this server is available to take a new request. [16]
+ *
+ * @return true if no request is currently assigned (current_request == nullptr); otherwise false. [16]
+ */
 bool WebServer::is_available() const {
     return current_request == nullptr;
 }
 
-// check the current request id if the request exists
-// no request returns -1 (invalid and means no id)
+/**
+ * @brief Returns the id of the currently processed request, if any. [16]
+ *
+ * @return Request id if current_request is non-null; otherwise -1. [16]
+ */
 int WebServer::curr_request_id() const {
     if (current_request != nullptr) {
         return current_request->id;
@@ -49,11 +72,16 @@ int WebServer::curr_request_id() const {
     return -1;
 }
 
-
-// if the current request exists and the cycles goes to 0
-// return the current request
-// reset the servers variables (current_request, remaining cycles, busy)
-// otherwise return nullptr
+/**
+ * @brief Returns the completed request (if finished) and resets the server to idle. [16]
+ *
+ * @details
+ * If a request exists and remaining_cycles is <= 0, the request is considered complete.
+ * The server is reset (current_request cleared, remaining_cycles set to 0, busy set to false)
+ * and the completed request pointer is returned to the caller. Otherwise returns nullptr. [16]
+ *
+ * @return Pointer to the completed Request if one finished; nullptr otherwise. [17]
+ */
 Request* WebServer::processed_request() {
     if (current_request != nullptr && remaining_cycles <= 0) {
         Request* completed_request = current_request;

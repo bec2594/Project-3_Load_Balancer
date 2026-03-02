@@ -1,0 +1,35 @@
+digraph "src/Request.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/Request.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="src/LoadBalancer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LoadBalancer_8h.html",tooltip="Declares the LoadBalancer class, which manages request queuing, dispatching to WebServers,..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="src/LoadBalancer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LoadBalancer_8cpp.html",tooltip="Implements the LoadBalancer class responsible for queuing, dispatching, firewall blocking,..."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="src/Simulate.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Simulate_8h.html",tooltip="Declares the Simulate class, which orchestrates configuration loading, initialization,..."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="src/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip=" "];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="src/Simulate.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Simulate_8cpp.html",tooltip="Implements the Simulate class, which coordinates configuration loading, component initialization,..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="src/LogFileStats.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LogFileStats_8h.html",tooltip="Declares the LogFileStats class, which collects and summarizes simulation statistics (requests proces..."];
+  Node7 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="src/LogFileStats.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$LogFileStats_8cpp.html",tooltip="Implements the LogFileStats class, which collects and summarizes simulation statistics (requests proc..."];
+  Node7 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="src/Request.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Request_8cpp.html",tooltip="Implements the Request class, which represents a single simulated workload request and provides forma..."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="src/RequestGenerator.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RequestGenerator_8h.html",tooltip="Declares the RequestGenerator class, which creates randomized Request objects for the simulation...."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="src/RequestGenerator.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RequestGenerator_8cpp.html",tooltip="Implements the RequestGenerator class, which creates randomized Request objects for the simulation us..."];
+  Node10 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="src/WebServer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebServer_8h.html",tooltip="Declares the WebServer class, which processes Request objects over discrete simulation cycles...."];
+  Node12 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="src/WebServer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WebServer_8cpp.html",tooltip="Implements the WebServer class, which processes Requests over discrete simulation cycles...."];
+}

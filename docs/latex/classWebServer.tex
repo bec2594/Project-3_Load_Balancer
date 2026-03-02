@@ -1,0 +1,216 @@
+\hypertarget{classWebServer}{}\doxysection{Web\+Server Class Reference}
+\label{classWebServer}\index{WebServer@{WebServer}}
+
+
+Represents a single server that can process at most one \mbox{\hyperlink{classRequest}{Request}} at a time. \mbox{[}17\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$Web\+Server.\+h$>$}
+
+
+
+Collaboration diagram for Web\+Server\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWebServer_abda3266dd2e1f3980b4aa48892d36ef9}{Web\+Server}} (int server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classWebServer}{Web\+Server}} with a given unique id. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWebServer_a9ab382bcfa6316c949004a51720a7a1d}{take\+\_\+request}} (\mbox{\hyperlink{classRequest}{Request}} $\ast$request)
+\begin{DoxyCompactList}\small\item\em Assigns a request to this webserver if it is not busy. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWebServer_ad5c234a210ba73cd20d0a21eff3c6eb6}{process\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Advances processing by one simulation tick, decrementing remaining\+\_\+cycles when busy. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWebServer_a798e2ec912ceaa7c26f14639874d30b7}{is\+\_\+available}} () const
+\begin{DoxyCompactList}\small\item\em Checks whether the webserver is available to take a new request. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWebServer_a6aacc74d4e401f5a86cd6ea9f3ef8653}{curr\+\_\+request\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Returns the id of the currently processed request. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest}{Request}} $\ast$ \mbox{\hyperlink{classWebServer_aef5cc872cbfd6a70d3f3cfd469f5f70e}{processed\+\_\+request}} ()
+\begin{DoxyCompactList}\small\item\em Returns the completed request (if processing finished) and clears the server state. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classWebServer_a02fff1dd9414d0fd6ff7960087b41038}{id}}
+\begin{DoxyCompactList}\small\item\em Unique identifier for this \mbox{\hyperlink{classWebServer}{Web\+Server}} instance. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest}{Request}} $\ast$ \mbox{\hyperlink{classWebServer_a3872f12433cbb3ac7b74cad894a4792a}{current\+\_\+request}}
+\begin{DoxyCompactList}\small\item\em Pointer to the currently assigned \mbox{\hyperlink{classRequest}{Request}}, or nullptr if idle. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classWebServer_a2b22bbf699a23ae01d423285a43cfd37}{remaining\+\_\+cycles}}
+\begin{DoxyCompactList}\small\item\em Remaining processing cycles for the current request (valid when busy). \mbox{[}17\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWebServer_a702afd03031519bc17e80bbbc0370c5a}{busy}}
+\begin{DoxyCompactList}\small\item\em True if the server is currently processing a request; false otherwise. \mbox{[}17\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single server that can process at most one \mbox{\hyperlink{classRequest}{Request}} at a time. \mbox{[}17\mbox{]}. 
+
+A \mbox{\hyperlink{classWebServer}{Web\+Server}} tracks the currently assigned request (if any), the remaining processing cycles, and whether it is busy. It provides methods to accept a request, advance time, query availability, and return a completed request. \mbox{[}17\mbox{]} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWebServer_abda3266dd2e1f3980b4aa48892d36ef9}\label{classWebServer_abda3266dd2e1f3980b4aa48892d36ef9}} 
+\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\index{WebServer@{WebServer}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{WebServer()}{WebServer()}}
+{\footnotesize\ttfamily Web\+Server\+::\+Web\+Server (\begin{DoxyParamCaption}\item[{int}]{server\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classWebServer}{Web\+Server}} with a given unique id. \mbox{[}17\mbox{]}. 
+
+Constructs a \mbox{\hyperlink{classWebServer}{Web\+Server}} with a unique identifier and no active request. \mbox{[}16\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+id} & Unique id assigned to the server.\\
+\hline
+{\em server\+\_\+id} & Unique id assigned to this server instance. \mbox{[}17\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWebServer_a6aacc74d4e401f5a86cd6ea9f3ef8653}\label{classWebServer_a6aacc74d4e401f5a86cd6ea9f3ef8653}} 
+\index{WebServer@{WebServer}!curr\_request\_id@{curr\_request\_id}}
+\index{curr\_request\_id@{curr\_request\_id}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{curr\_request\_id()}{curr\_request\_id()}}
+{\footnotesize\ttfamily int Web\+Server\+::curr\+\_\+request\+\_\+id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the id of the currently processed request. \mbox{[}17\mbox{]}. 
+
+Returns the id of the currently processed request, if any. \mbox{[}16\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classRequest}{Request}} id, or -\/1 if no request is being processed.
+
+\mbox{\hyperlink{classRequest}{Request}} id if current\+\_\+request is non-\/null; otherwise -\/1. \mbox{[}16\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWebServer_a798e2ec912ceaa7c26f14639874d30b7}\label{classWebServer_a798e2ec912ceaa7c26f14639874d30b7}} 
+\index{WebServer@{WebServer}!is\_available@{is\_available}}
+\index{is\_available@{is\_available}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{is\_available()}{is\_available()}}
+{\footnotesize\ttfamily bool Web\+Server\+::is\+\_\+available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks whether the webserver is available to take a new request. \mbox{[}17\mbox{]}. 
+
+Indicates whether this server is available to take a new request. \mbox{[}16\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+true if available (idle), false if busy.
+
+true if no request is currently assigned (current\+\_\+request == nullptr); otherwise false. \mbox{[}16\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWebServer_ad5c234a210ba73cd20d0a21eff3c6eb6}\label{classWebServer_ad5c234a210ba73cd20d0a21eff3c6eb6}} 
+\index{WebServer@{WebServer}!process\_time@{process\_time}}
+\index{process\_time@{process\_time}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{process\_time()}{process\_time()}}
+{\footnotesize\ttfamily void Web\+Server\+::process\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Advances processing by one simulation tick, decrementing remaining\+\_\+cycles when busy. \mbox{[}17\mbox{]}. 
+
+Advances the server by one simulation tick. \mbox{[}16\mbox{]}.
+
+If the server is busy, decrements remaining\+\_\+cycles by one. Completion handling is performed elsewhere by checking remaining\+\_\+cycles and calling \mbox{\hyperlink{classWebServer_aef5cc872cbfd6a70d3f3cfd469f5f70e}{processed\+\_\+request()}}. \mbox{[}16\mbox{]} \mbox{\Hypertarget{classWebServer_aef5cc872cbfd6a70d3f3cfd469f5f70e}\label{classWebServer_aef5cc872cbfd6a70d3f3cfd469f5f70e}} 
+\index{WebServer@{WebServer}!processed\_request@{processed\_request}}
+\index{processed\_request@{processed\_request}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{processed\_request()}{processed\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRequest}{Request}} $\ast$ Web\+Server\+::processed\+\_\+request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the completed request (if processing finished) and clears the server state. \mbox{[}17\mbox{]}. 
+
+Returns the completed request (if finished) and resets the server to idle. \mbox{[}16\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the completed \mbox{\hyperlink{classRequest}{Request}} if finished; nullptr otherwise. \mbox{[}17\mbox{]}
+\end{DoxyReturn}
+If a request exists and remaining\+\_\+cycles is $<$= 0, the request is considered complete. The server is reset (current\+\_\+request cleared, remaining\+\_\+cycles set to 0, busy set to false) and the completed request pointer is returned to the caller. Otherwise returns nullptr. \mbox{[}16\mbox{]}
+
+\begin{DoxyReturn}{Returns}
+Pointer to the completed \mbox{\hyperlink{classRequest}{Request}} if one finished; nullptr otherwise. \mbox{[}17\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWebServer_a9ab382bcfa6316c949004a51720a7a1d}\label{classWebServer_a9ab382bcfa6316c949004a51720a7a1d}} 
+\index{WebServer@{WebServer}!take\_request@{take\_request}}
+\index{take\_request@{take\_request}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{take\_request()}{take\_request()}}
+{\footnotesize\ttfamily bool Web\+Server\+::take\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}} $\ast$}]{request }\end{DoxyParamCaption})}
+
+
+
+Assigns a request to this webserver if it is not busy. \mbox{[}17\mbox{]}. 
+
+Attempts to assign a \mbox{\hyperlink{classRequest}{Request}} to this server for processing. \mbox{[}16\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to the \mbox{\hyperlink{classRequest}{Request}} to process. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the request was accepted; false if the server is busy or request is nullptr. \mbox{[}17\mbox{]}
+\end{DoxyReturn}
+If the server is not busy and {\ttfamily request} is non-\/null, the server takes ownership of the request pointer, initializes its remaining cycle count from \mbox{\hyperlink{classRequest_acc69c067c1d2b35766028e746044e491}{Request\+::processing\+\_\+time}}, and marks itself busy. \mbox{[}16\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to a \mbox{\hyperlink{classRequest}{Request}} to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the request was accepted; false if the server was busy or {\ttfamily request} was null. \mbox{[}17\mbox{]} 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classWebServer_a702afd03031519bc17e80bbbc0370c5a}\label{classWebServer_a702afd03031519bc17e80bbbc0370c5a}} 
+\index{WebServer@{WebServer}!busy@{busy}}
+\index{busy@{busy}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{busy}{busy}}
+{\footnotesize\ttfamily bool Web\+Server\+::busy}
+
+
+
+True if the server is currently processing a request; false otherwise. \mbox{[}17\mbox{]}. 
+
+\mbox{\Hypertarget{classWebServer_a3872f12433cbb3ac7b74cad894a4792a}\label{classWebServer_a3872f12433cbb3ac7b74cad894a4792a}} 
+\index{WebServer@{WebServer}!current\_request@{current\_request}}
+\index{current\_request@{current\_request}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{current\_request}{current\_request}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRequest}{Request}}$\ast$ Web\+Server\+::current\+\_\+request}
+
+
+
+Pointer to the currently assigned \mbox{\hyperlink{classRequest}{Request}}, or nullptr if idle. \mbox{[}17\mbox{]}. 
+
+\mbox{\Hypertarget{classWebServer_a02fff1dd9414d0fd6ff7960087b41038}\label{classWebServer_a02fff1dd9414d0fd6ff7960087b41038}} 
+\index{WebServer@{WebServer}!id@{id}}
+\index{id@{id}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Web\+Server\+::id}
+
+
+
+Unique identifier for this \mbox{\hyperlink{classWebServer}{Web\+Server}} instance. \mbox{[}17\mbox{]}. 
+
+\mbox{\Hypertarget{classWebServer_a2b22bbf699a23ae01d423285a43cfd37}\label{classWebServer_a2b22bbf699a23ae01d423285a43cfd37}} 
+\index{WebServer@{WebServer}!remaining\_cycles@{remaining\_cycles}}
+\index{remaining\_cycles@{remaining\_cycles}!WebServer@{WebServer}}
+\doxysubsubsection{\texorpdfstring{remaining\_cycles}{remaining\_cycles}}
+{\footnotesize\ttfamily int Web\+Server\+::remaining\+\_\+cycles}
+
+
+
+Remaining processing cycles for the current request (valid when busy). \mbox{[}17\mbox{]}. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{WebServer_8h}{Web\+Server.\+h}}\item 
+src/\mbox{\hyperlink{WebServer_8cpp}{Web\+Server.\+cpp}}\end{DoxyCompactItemize}

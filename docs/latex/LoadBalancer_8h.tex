@@ -1,0 +1,31 @@
+\hypertarget{LoadBalancer_8h}{}\doxysection{src/\+Load\+Balancer.h File Reference}
+\label{LoadBalancer_8h}\index{src/LoadBalancer.h@{src/LoadBalancer.h}}
+
+
+Declares the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class, which manages request queuing, dispatching to Web\+Servers, dynamic server scaling, firewall IP blocking, and per-\/load-\/balancer logging. \mbox{[}6\mbox{]}.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include \char`\"{}Web\+Server.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Request.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Log\+File\+Stats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}IPRange.\+h\char`\"{}}\newline
+Include dependency graph for Load\+Balancer.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}}
+\begin{DoxyCompactList}\small\item\em Coordinates a pool of \mbox{\hyperlink{classWebServer}{Web\+Server}} instances by accepting Requests, filtering blocked IPs, dispatching work, and scaling server count based on queue thresholds. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declares the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} class, which manages request queuing, dispatching to Web\+Servers, dynamic server scaling, firewall IP blocking, and per-\/load-\/balancer logging. \mbox{[}6\mbox{]}. 
+

@@ -1,0 +1,193 @@
+\hypertarget{classRequestGenerator}{}\doxysection{Request\+Generator Class Reference}
+\label{classRequestGenerator}\index{RequestGenerator@{RequestGenerator}}
+
+
+Generates randomized \mbox{\hyperlink{classRequest}{Request}} instances using simulation configuration parameters. \mbox{[}13\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$Request\+Generator.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRequestGenerator_a037f24901ecec1644e019e3aecb44e25}{Request\+Generator}} (const \mbox{\hyperlink{classConfig}{Config}} $\ast$config\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} configured using {\ttfamily config\+\_\+ptr}. \mbox{[}13\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequest}{Request}} $\ast$ \mbox{\hyperlink{classRequestGenerator_a3d3635d3f75e01c4ef557235bffbc5c2}{generate\+\_\+request}} (int const time, int \&id)
+\begin{DoxyCompactList}\small\item\em Generates a new heap-\/allocated \mbox{\hyperlink{classRequest}{Request}} with randomized fields. \mbox{[}13\mbox{]}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRequestGenerator_a5e3608727ef31298d3060213b9aecd91}{generate\+\_\+\+IP}} ()
+\begin{DoxyCompactList}\small\item\em Generates a randomized IPv4 address string. \mbox{[}12\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classRequestGenerator_a61df6754af39c6a34cf2b103d3636fed}{generate\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Generates a randomized processing time in cycles. \mbox{[}12\mbox{]}. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classRequestGenerator_ad4a2920d2abd1fb9151940921cdd00ef}{generate\+\_\+job\+\_\+type}} ()
+\begin{DoxyCompactList}\small\item\em Generates a randomized job type character (\textquotesingle{}P\textquotesingle{} or \textquotesingle{}S\textquotesingle{}). \mbox{[}12\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates randomized \mbox{\hyperlink{classRequest}{Request}} instances using simulation configuration parameters. \mbox{[}13\mbox{]}. 
+
+Uses a Mersenne Twister RNG and several distributions to generate\+:
+\begin{DoxyItemize}
+\item IPv4 addresses (from a set of private ranges)
+\item Processing times within the configured min/max bounds
+\item Job types (\textquotesingle{}P\textquotesingle{} or \textquotesingle{}S\textquotesingle{}) \mbox{[}13\mbox{]} 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRequestGenerator_a037f24901ecec1644e019e3aecb44e25}\label{classRequestGenerator_a037f24901ecec1644e019e3aecb44e25}} 
+\index{RequestGenerator@{RequestGenerator}!RequestGenerator@{RequestGenerator}}
+\index{RequestGenerator@{RequestGenerator}!RequestGenerator@{RequestGenerator}}
+\doxysubsubsection{\texorpdfstring{RequestGenerator()}{RequestGenerator()}}
+{\footnotesize\ttfamily Request\+Generator\+::\+Request\+Generator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConfig}{Config}} $\ast$}]{config\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} configured using {\ttfamily config\+\_\+ptr}. \mbox{[}13\mbox{]}. 
+
+Constructs a \mbox{\hyperlink{classRequestGenerator}{Request\+Generator}} and initializes its random number distributions. \mbox{[}12\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+ptr} & Pointer to the shared \mbox{\hyperlink{classConfig}{Config}} instance used to parameterize generation (not owned). \mbox{[}13\mbox{]}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item Seeds the random engine using the current system time. \mbox{[}12\mbox{]}
+\item Initializes\+:
+\begin{DoxyItemize}
+\item ip\+\_\+octet\+\_\+dist to generate IPv4 octets in \mbox{[}0, 255\mbox{]}. \mbox{[}12\mbox{]}
+\item time\+\_\+dist to generate processing times in \mbox{[}min\+\_\+process\+\_\+time, max\+\_\+process\+\_\+time\mbox{]} from \mbox{\hyperlink{classConfig}{Config}}. \mbox{[}12\mbox{]}
+\item job\+\_\+type\+\_\+dist to generate a job type selector (0 -\/$>$ \textquotesingle{}P\textquotesingle{}, 1 -\/$>$ \textquotesingle{}S\textquotesingle{}). \mbox{[}12\mbox{]}
+\item ip\+\_\+range\+\_\+choice\+\_\+dist to select among 3 private IP ranges (0..2). \mbox{[}12\mbox{]}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+ptr} & Pointer to the shared configuration object used to parameterize distributions. \mbox{[}12\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRequestGenerator_a5e3608727ef31298d3060213b9aecd91}\label{classRequestGenerator_a5e3608727ef31298d3060213b9aecd91}} 
+\index{RequestGenerator@{RequestGenerator}!generate\_IP@{generate\_IP}}
+\index{generate\_IP@{generate\_IP}!RequestGenerator@{RequestGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_IP()}{generate\_IP()}}
+{\footnotesize\ttfamily std\+::string Request\+Generator\+::generate\+\_\+\+IP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a randomized IPv4 address string. \mbox{[}12\mbox{]}. 
+
+Generates a randomized private IPv4 address string. \mbox{[}12\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+IPv4 address in dotted-\/decimal notation.
+\end{DoxyReturn}
+Randomly chooses one of three private IP ranges and then fills the remaining octets randomly\+:
+\begin{DoxyItemize}
+\item choice 0\+: \char`\"{}192.\+168.\+X.\+Y\char`\"{}
+\item choice 1\+: \char`\"{}10.\+X.\+Y.\+Z\char`\"{}
+\item choice 2\+: \char`\"{}172.\+16.\+X.\+Y\char`\"{} (note\+: this implementation uses 172.\+16 specifically) \mbox{[}12\mbox{]}
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+IPv4 address string in dotted-\/decimal notation. \mbox{[}12\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRequestGenerator_ad4a2920d2abd1fb9151940921cdd00ef}\label{classRequestGenerator_ad4a2920d2abd1fb9151940921cdd00ef}} 
+\index{RequestGenerator@{RequestGenerator}!generate\_job\_type@{generate\_job\_type}}
+\index{generate\_job\_type@{generate\_job\_type}!RequestGenerator@{RequestGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_job\_type()}{generate\_job\_type()}}
+{\footnotesize\ttfamily char Request\+Generator\+::generate\+\_\+job\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a randomized job type character (\textquotesingle{}P\textquotesingle{} or \textquotesingle{}S\textquotesingle{}). \mbox{[}12\mbox{]}. 
+
+Generates a randomized job type character. \mbox{[}12\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+Job type character.
+\end{DoxyReturn}
+Uses job\+\_\+type\+\_\+dist where\+:
+\begin{DoxyItemize}
+\item 0 maps to \textquotesingle{}P\textquotesingle{}
+\item 1 maps to \textquotesingle{}S\textquotesingle{} \mbox{[}12\mbox{]}
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+Job type character (\textquotesingle{}P\textquotesingle{} or \textquotesingle{}S\textquotesingle{}). \mbox{[}12\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRequestGenerator_a3d3635d3f75e01c4ef557235bffbc5c2}\label{classRequestGenerator_a3d3635d3f75e01c4ef557235bffbc5c2}} 
+\index{RequestGenerator@{RequestGenerator}!generate\_request@{generate\_request}}
+\index{generate\_request@{generate\_request}!RequestGenerator@{RequestGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_request()}{generate\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRequest}{Request}} $\ast$ Request\+Generator\+::generate\+\_\+request (\begin{DoxyParamCaption}\item[{int const}]{time,  }\item[{int \&}]{id }\end{DoxyParamCaption})}
+
+
+
+Generates a new heap-\/allocated \mbox{\hyperlink{classRequest}{Request}} with randomized fields. \mbox{[}13\mbox{]}. 
+
+Generates a new \mbox{\hyperlink{classRequest}{Request}} instance with randomized fields. \mbox{[}12\mbox{]}.
+
+The caller assumes ownership of the returned pointer. The {\ttfamily id} parameter is used as a monotonically increasing request id counter and is incremented as a side effect. \mbox{[}12\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Current simulation time (used as the request arrival\+\_\+time). \mbox{[}12\mbox{]} \\
+\hline
+{\em id} & Reference to the request id counter (incremented). \mbox{[}12\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a newly created \mbox{\hyperlink{classRequest}{Request}}. \mbox{[}12\mbox{]}
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Uses and increments the passed-\/in id counter (by reference) to ensure unique request ids. \mbox{[}12\mbox{]}
+\item Randomly generates\+:
+\begin{DoxyItemize}
+\item IP\+\_\+in and IP\+\_\+out
+\item processing time
+\item job type \mbox{[}12\mbox{]}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Ownership of the returned \mbox{\hyperlink{classRequest}{Request}} pointer is transferred to the caller. \mbox{[}12\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Current simulation time (used as the \mbox{\hyperlink{classRequest}{Request}} arrival\+\_\+time). \mbox{[}12\mbox{]} \\
+\hline
+{\em id} & Reference to a monotonically increasing request id counter; incremented as a side effect. \mbox{[}12\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a newly allocated \mbox{\hyperlink{classRequest}{Request}}. \mbox{[}12\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRequestGenerator_a61df6754af39c6a34cf2b103d3636fed}\label{classRequestGenerator_a61df6754af39c6a34cf2b103d3636fed}} 
+\index{RequestGenerator@{RequestGenerator}!generate\_time@{generate\_time}}
+\index{generate\_time@{generate\_time}!RequestGenerator@{RequestGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_time()}{generate\_time()}}
+{\footnotesize\ttfamily int Request\+Generator\+::generate\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a randomized processing time in cycles. \mbox{[}12\mbox{]}. 
+
+Generates a randomized processing time (in cycles) within the configured bounds. \mbox{[}12\mbox{]}.
+
+\begin{DoxyReturn}{Returns}
+Processing time in cycles.
+
+Processing time in cycles. \mbox{[}12\mbox{]} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{RequestGenerator_8h}{Request\+Generator.\+h}}\item 
+src/\mbox{\hyperlink{RequestGenerator_8cpp}{Request\+Generator.\+cpp}}\end{DoxyCompactItemize}

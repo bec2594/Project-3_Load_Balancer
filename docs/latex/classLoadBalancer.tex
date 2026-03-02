@@ -1,0 +1,391 @@
+\hypertarget{classLoadBalancer}{}\doxysection{Load\+Balancer Class Reference}
+\label{classLoadBalancer}\index{LoadBalancer@{LoadBalancer}}
+
+
+Coordinates a pool of \mbox{\hyperlink{classWebServer}{Web\+Server}} instances by accepting Requests, filtering blocked IPs, dispatching work, and scaling server count based on queue thresholds. \mbox{[}6\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$Load\+Balancer.\+h$>$}
+
+
+
+Collaboration diagram for Load\+Balancer\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLoadBalancer_ac3b143a65c4b43b2c62e17d48b2c9b63}{Load\+Balancer}} (int LB\+\_\+id, const \mbox{\hyperlink{classConfig}{Config}} $\ast$config\+\_\+ptr, \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} $\ast$log\+\_\+file\+\_\+stats\+\_\+ptr, int curr\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}}. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLoadBalancer_a69951a7bb77be7fafd4d5ad6919abd80}{$\sim$\+Load\+Balancer}} ()
+\begin{DoxyCompactList}\small\item\em Destructor; cleans up owned Web\+Servers and any remaining Requests. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classLoadBalancer_abc627dc8c95d6cf2d21f3d30853e743b}{add\+\_\+request}} (\mbox{\hyperlink{classRequest}{Request}} $\ast$request)
+\begin{DoxyCompactList}\small\item\em Adds a request to the queue unless it is blocked by firewall IP ranges. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoadBalancer_a2b5136f4b31ad97af62bfe520bfacb5d}{dispatch\+\_\+requests}} ()
+\begin{DoxyCompactList}\small\item\em Sends queued requests to available Web\+Servers. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoadBalancer_ab28749f86a52bfed339d2cdf9344581c}{manage\+\_\+server\+\_\+count}} ()
+\begin{DoxyCompactList}\small\item\em Adjusts the number of Web\+Servers based on current queue size thresholds. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoadBalancer_a4579c1d098ac5666d750c93c87a3125c}{process\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Advances one simulation tick for the load balancer and its Web\+Servers. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoadBalancer_aa86b07ff88abc0bb743a6ed66e2a0d9a}{add\+\_\+blocked\+\_\+\+IP\+\_\+range}} (const \mbox{\hyperlink{classIPRange}{IPRange}} \&range)
+\begin{DoxyCompactList}\small\item\em Adds an IP range to the blocked firewall list. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLoadBalancer_a75e240599a3a7727955de1d1e4dfa9ea}{queue\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of requests currently waiting in the queue. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLoadBalancer_a525f43b505a6cea4b5089d9e304b0a42}{server\+\_\+count}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of Web\+Servers currently managed by this load balancer. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} $\ast$ \mbox{\hyperlink{classLoadBalancer_ac89797e028e6a620aff9353536229162}{get\+\_\+stats}} () const
+\begin{DoxyCompactList}\small\item\em Returns the \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector associated with this load balancer. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoadBalancer_a98081bf2723559375b85f04aa620d331}{log\+\_\+event}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Logs an event message to the per-\/load-\/balancer log stream (and typically stdout). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classLoadBalancer_a0b634a108b96df9bcd66be2775fb30da}{id}}
+\begin{DoxyCompactList}\small\item\em Unique identifier for this load balancer instance. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+std\+::queue$<$ \mbox{\hyperlink{classRequest}{Request}} $\ast$ $>$ \mbox{\hyperlink{classLoadBalancer_a922ce05be2bc7c6c3ed777b0101a1173}{request\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em FIFO queue of pending requests owned by the load balancer. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classWebServer}{Web\+Server}} $\ast$ $>$ \mbox{\hyperlink{classLoadBalancer_a15d8373032b782244f5b2b42e853ad75}{web\+\_\+servers}}
+\begin{DoxyCompactList}\small\item\em List of managed \mbox{\hyperlink{classWebServer}{Web\+Server}} instances (owned by the load balancer). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classLoadBalancer_a363317f241373a9b71b03df5b4927265}{time}}
+\begin{DoxyCompactList}\small\item\em Current local time counter for this load balancer (simulation cycles). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classIPRange}{IPRange}} $>$ \mbox{\hyperlink{classLoadBalancer_af4fa35c13dcc57951b2519d2234b17e0}{blocked\+\_\+ip}}
+\begin{DoxyCompactList}\small\item\em List of blocked incoming IP ranges (firewall rules). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classConfig}{Config}} $\ast$ \mbox{\hyperlink{classLoadBalancer_a20b663a69ef4ebc20fe76f247bb3113b}{config}}
+\begin{DoxyCompactList}\small\item\em Pointer to shared configuration data (not owned). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} $\ast$ \mbox{\hyperlink{classLoadBalancer_a8e6a7c5c18502da0b2c06979a90d01a9}{log\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em Pointer to shared statistics collector (not owned by \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} in this design). \mbox{[}6\mbox{]}. \end{DoxyCompactList}\item 
+std\+::ofstream \mbox{\hyperlink{classLoadBalancer_a887b70b955f0e63b657e3a3a80accd50}{log\+\_\+file\+\_\+stream}}
+\begin{DoxyCompactList}\small\item\em Output stream for per-\/load-\/balancer event logging. \mbox{[}6\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Coordinates a pool of \mbox{\hyperlink{classWebServer}{Web\+Server}} instances by accepting Requests, filtering blocked IPs, dispatching work, and scaling server count based on queue thresholds. \mbox{[}6\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLoadBalancer_ac3b143a65c4b43b2c62e17d48b2c9b63}\label{classLoadBalancer_ac3b143a65c4b43b2c62e17d48b2c9b63}} 
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\index{LoadBalancer@{LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{LoadBalancer()}{LoadBalancer()}}
+{\footnotesize\ttfamily Load\+Balancer\+::\+Load\+Balancer (\begin{DoxyParamCaption}\item[{int}]{LB\+\_\+id,  }\item[{const \mbox{\hyperlink{classConfig}{Config}} $\ast$}]{config\+\_\+ptr,  }\item[{\mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} $\ast$}]{log\+\_\+file\+\_\+stats\+\_\+ptr,  }\item[{int}]{curr\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}}. \mbox{[}6\mbox{]}. 
+
+Constructs a \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} and initializes its server pool and log stream. \mbox{[}5\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em LB\+\_\+id} & Unique identifier for each load balancer (supports multiple instances). \mbox{[}6\mbox{]} \\
+\hline
+{\em config\+\_\+ptr} & Pointer to shared configuration object. \mbox{[}6\mbox{]} \\
+\hline
+{\em log\+\_\+file\+\_\+stats\+\_\+ptr} & Pointer to shared \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector for summary reporting. \mbox{[}6\mbox{]} \\
+\hline
+{\em curr\+\_\+time} & Initial simulation time for this load balancer. \mbox{[}6\mbox{]}\\
+\hline
+\end{DoxyParams}
+Opens a per-\/load-\/balancer log file named \char`\"{}$<$log\+\_\+file\+\_\+name$>$\+\_\+\+LB$<$id$>$.\+txt\char`\"{} and creates the initial set of web servers as specified by the shared \mbox{\hyperlink{classConfig}{Config}} object. \mbox{[}5\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em LB\+\_\+id} & Unique identifier for this load balancer instance. \mbox{[}6\mbox{]} \\
+\hline
+{\em config\+\_\+ptr} & Pointer to a shared configuration object. \mbox{[}6\mbox{]} \\
+\hline
+{\em log\+\_\+file\+\_\+stats\+\_\+ptr} & Pointer to a shared statistics collector used for summary reporting. \mbox{[}6\mbox{]} \\
+\hline
+{\em curr\+\_\+time} & Initial simulation time for this load balancer. \mbox{[}6\mbox{]} \\
+\hline
+\end{DoxyParams}
+The log file name is derived from the configured base log name plus a suffix identifying this load balancer instance (e.\+g., \char`\"{}simulation\+\_\+log\+\_\+\+LB1.\+txt\char`\"{}). \mbox{[}5\mbox{]}\mbox{\Hypertarget{classLoadBalancer_a69951a7bb77be7fafd4d5ad6919abd80}\label{classLoadBalancer_a69951a7bb77be7fafd4d5ad6919abd80}} 
+\index{LoadBalancer@{LoadBalancer}!````~LoadBalancer@{$\sim$LoadBalancer}}
+\index{````~LoadBalancer@{$\sim$LoadBalancer}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{$\sim$LoadBalancer()}{~LoadBalancer()}}
+{\footnotesize\ttfamily Load\+Balancer\+::$\sim$\+Load\+Balancer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor; cleans up owned Web\+Servers and any remaining Requests. \mbox{[}6\mbox{]}. 
+
+Destructor that releases all dynamically allocated Requests and Web\+Servers. \mbox{[}5\mbox{]}.
+
+
+\begin{DoxyItemize}
+\item Deletes any requests still in the queue.
+\item Deletes any request currently owned by a \mbox{\hyperlink{classWebServer}{Web\+Server}}.
+\item Deletes each \mbox{\hyperlink{classWebServer}{Web\+Server}} instance.
+\item Closes the per-\/load-\/balancer log stream. \mbox{[}5\mbox{]} 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLoadBalancer_aa86b07ff88abc0bb743a6ed66e2a0d9a}\label{classLoadBalancer_aa86b07ff88abc0bb743a6ed66e2a0d9a}} 
+\index{LoadBalancer@{LoadBalancer}!add\_blocked\_IP\_range@{add\_blocked\_IP\_range}}
+\index{add\_blocked\_IP\_range@{add\_blocked\_IP\_range}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{add\_blocked\_IP\_range()}{add\_blocked\_IP\_range()}}
+{\footnotesize\ttfamily void Load\+Balancer\+::add\+\_\+blocked\+\_\+\+IP\+\_\+range (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classIPRange}{IPRange}} \&}]{range }\end{DoxyParamCaption})}
+
+
+
+Adds an IP range to the blocked firewall list. \mbox{[}6\mbox{]}. 
+
+Adds a blocked IP range to the firewall list. \mbox{[}5\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & \mbox{\hyperlink{classIPRange}{IPRange}} to block.\\
+\hline
+\end{DoxyParams}
+Requests with IP\+\_\+in inside this range will be rejected in \mbox{\hyperlink{classLoadBalancer_abc627dc8c95d6cf2d21f3d30853e743b}{add\+\_\+request()}}. \mbox{[}5\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & \mbox{\hyperlink{classIPRange}{IPRange}} to add to the blocked list. \mbox{[}6\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLoadBalancer_abc627dc8c95d6cf2d21f3d30853e743b}\label{classLoadBalancer_abc627dc8c95d6cf2d21f3d30853e743b}} 
+\index{LoadBalancer@{LoadBalancer}!add\_request@{add\_request}}
+\index{add\_request@{add\_request}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{add\_request()}{add\_request()}}
+{\footnotesize\ttfamily bool Load\+Balancer\+::add\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRequest}{Request}} $\ast$}]{request }\end{DoxyParamCaption})}
+
+
+
+Adds a request to the queue unless it is blocked by firewall IP ranges. \mbox{[}6\mbox{]}. 
+
+Adds a request to the queue unless it is blocked by the firewall rules. \mbox{[}5\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to a \mbox{\hyperlink{classRequest}{Request}} object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the request is queued; false if it is blocked (and deleted). \mbox{[}6\mbox{]}
+\end{DoxyReturn}
+The request is checked against each blocked IP range; if its IP\+\_\+in is within any blocked range, the request is discarded, a blocked counter is incremented, and false is returned. \mbox{[}5\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Pointer to the \mbox{\hyperlink{classRequest}{Request}} to enqueue (ownership is taken by the \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} on success). \mbox{[}6\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the request was accepted into the queue; false if it was blocked and deleted. \mbox{[}5\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLoadBalancer_a2b5136f4b31ad97af62bfe520bfacb5d}\label{classLoadBalancer_a2b5136f4b31ad97af62bfe520bfacb5d}} 
+\index{LoadBalancer@{LoadBalancer}!dispatch\_requests@{dispatch\_requests}}
+\index{dispatch\_requests@{dispatch\_requests}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{dispatch\_requests()}{dispatch\_requests()}}
+{\footnotesize\ttfamily void Load\+Balancer\+::dispatch\+\_\+requests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sends queued requests to available Web\+Servers. \mbox{[}6\mbox{]}. 
+
+Dispatches queued requests to available Web\+Servers until no more can be dispatched. \mbox{[}5\mbox{]}.
+
+Dispatch continues until either the queue is empty or no \mbox{\hyperlink{classWebServer}{Web\+Server}} is available. \mbox{[}6\mbox{]}
+
+Continues while there are queued requests and at least one available server. For each dispatched request, the request\textquotesingle{}s start\+\_\+time is set to the current load balancer time and the request is handed to a \mbox{\hyperlink{classWebServer}{Web\+Server}}. \mbox{[}5\mbox{]} \mbox{\Hypertarget{classLoadBalancer_ac89797e028e6a620aff9353536229162}\label{classLoadBalancer_ac89797e028e6a620aff9353536229162}} 
+\index{LoadBalancer@{LoadBalancer}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} $\ast$ Load\+Balancer\+::get\+\_\+stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector associated with this load balancer. \mbox{[}6\mbox{]}. 
+
+Returns the shared \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} collector used by this load balancer.
+
+\begin{DoxyReturn}{Returns}
+Pointer to \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}}.
+
+Pointer to the associated \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}} object. \mbox{[}5\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLoadBalancer_a98081bf2723559375b85f04aa620d331}\label{classLoadBalancer_a98081bf2723559375b85f04aa620d331}} 
+\index{LoadBalancer@{LoadBalancer}!log\_event@{log\_event}}
+\index{log\_event@{log\_event}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{log\_event()}{log\_event()}}
+{\footnotesize\ttfamily void Load\+Balancer\+::log\+\_\+event (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+
+
+Logs an event message to the per-\/load-\/balancer log stream (and typically stdout). \mbox{[}6\mbox{]}. 
+
+Logs an event message to the per-\/load-\/balancer log file and stdout. \mbox{[}5\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Message to log.\\
+\hline
+{\em message} & Message to write. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLoadBalancer_ab28749f86a52bfed339d2cdf9344581c}\label{classLoadBalancer_ab28749f86a52bfed339d2cdf9344581c}} 
+\index{LoadBalancer@{LoadBalancer}!manage\_server\_count@{manage\_server\_count}}
+\index{manage\_server\_count@{manage\_server\_count}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{manage\_server\_count()}{manage\_server\_count()}}
+{\footnotesize\ttfamily void Load\+Balancer\+::manage\+\_\+server\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Adjusts the number of Web\+Servers based on current queue size thresholds. \mbox{[}6\mbox{]}. 
+
+Adds or removes servers based on queue size thresholds, at configured intervals. \mbox{[}5\mbox{]}.
+
+Queue thresholds are scaled by the current server count (see \mbox{\hyperlink{classConfig}{Config}} values). \mbox{[}6\mbox{]}
+
+This method only performs scaling checks if enough time has elapsed since the last check (server\+\_\+check\+\_\+interval\+\_\+cycles). \mbox{[}5\mbox{]}
+
+Thresholds are computed as\+:
+\begin{DoxyItemize}
+\item upper = queue\+\_\+high\+\_\+count $\ast$ current\+\_\+server\+\_\+count
+\item lower = queue\+\_\+low\+\_\+count $\ast$ current\+\_\+server\+\_\+count
+\end{DoxyItemize}
+
+If current queue size is below lower, an idle server may be removed. If current queue size is above upper, a server is added. \mbox{[}5\mbox{]} \mbox{\Hypertarget{classLoadBalancer_a4579c1d098ac5666d750c93c87a3125c}\label{classLoadBalancer_a4579c1d098ac5666d750c93c87a3125c}} 
+\index{LoadBalancer@{LoadBalancer}!process\_time@{process\_time}}
+\index{process\_time@{process\_time}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{process\_time()}{process\_time()}}
+{\footnotesize\ttfamily void Load\+Balancer\+::process\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Advances one simulation tick for the load balancer and its Web\+Servers. \mbox{[}6\mbox{]}. 
+
+Advances simulation time by one tick and processes all Web\+Servers. \mbox{[}5\mbox{]}.
+
+Updates time, processes servers, and finalizes completed requests (recording stats). \mbox{[}6\mbox{]}
+
+
+\begin{DoxyItemize}
+\item Increments the load balancer time counter.
+\item Samples queue size for statistics.
+\item Advances each \mbox{\hyperlink{classWebServer}{Web\+Server}} by one cycle.
+\item If a server finishes a request, records timing stats, increments processed count, logs completion, and deletes the completed request. \mbox{[}5\mbox{]} 
+\end{DoxyItemize}\mbox{\Hypertarget{classLoadBalancer_a75e240599a3a7727955de1d1e4dfa9ea}\label{classLoadBalancer_a75e240599a3a7727955de1d1e4dfa9ea}} 
+\index{LoadBalancer@{LoadBalancer}!queue\_size@{queue\_size}}
+\index{queue\_size@{queue\_size}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{queue\_size()}{queue\_size()}}
+{\footnotesize\ttfamily int Load\+Balancer\+::queue\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of requests currently waiting in the queue. \mbox{[}6\mbox{]}. 
+
+Returns the number of requests currently waiting in the queue.
+
+\begin{DoxyReturn}{Returns}
+Current queue size.
+
+Current request queue size. \mbox{[}5\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLoadBalancer_a525f43b505a6cea4b5089d9e304b0a42}\label{classLoadBalancer_a525f43b505a6cea4b5089d9e304b0a42}} 
+\index{LoadBalancer@{LoadBalancer}!server\_count@{server\_count}}
+\index{server\_count@{server\_count}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{server\_count()}{server\_count()}}
+{\footnotesize\ttfamily int Load\+Balancer\+::server\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of Web\+Servers currently managed by this load balancer. \mbox{[}6\mbox{]}. 
+
+Returns the number of Web\+Servers currently managed by the load balancer.
+
+\begin{DoxyReturn}{Returns}
+Current server count.
+
+Current server count. \mbox{[}5\mbox{]} 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classLoadBalancer_af4fa35c13dcc57951b2519d2234b17e0}\label{classLoadBalancer_af4fa35c13dcc57951b2519d2234b17e0}} 
+\index{LoadBalancer@{LoadBalancer}!blocked\_ip@{blocked\_ip}}
+\index{blocked\_ip@{blocked\_ip}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{blocked\_ip}{blocked\_ip}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classIPRange}{IPRange}}$>$ Load\+Balancer\+::blocked\+\_\+ip}
+
+
+
+List of blocked incoming IP ranges (firewall rules). \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a20b663a69ef4ebc20fe76f247bb3113b}\label{classLoadBalancer_a20b663a69ef4ebc20fe76f247bb3113b}} 
+\index{LoadBalancer@{LoadBalancer}!config@{config}}
+\index{config@{config}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classConfig}{Config}}$\ast$ Load\+Balancer\+::config}
+
+
+
+Pointer to shared configuration data (not owned). \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a0b634a108b96df9bcd66be2775fb30da}\label{classLoadBalancer_a0b634a108b96df9bcd66be2775fb30da}} 
+\index{LoadBalancer@{LoadBalancer}!id@{id}}
+\index{id@{id}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Load\+Balancer\+::id}
+
+
+
+Unique identifier for this load balancer instance. \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a8e6a7c5c18502da0b2c06979a90d01a9}\label{classLoadBalancer_a8e6a7c5c18502da0b2c06979a90d01a9}} 
+\index{LoadBalancer@{LoadBalancer}!log\_file@{log\_file}}
+\index{log\_file@{log\_file}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{log\_file}{log\_file}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLogFileStats}{Log\+File\+Stats}}$\ast$ Load\+Balancer\+::log\+\_\+file}
+
+
+
+Pointer to shared statistics collector (not owned by \mbox{\hyperlink{classLoadBalancer}{Load\+Balancer}} in this design). \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a887b70b955f0e63b657e3a3a80accd50}\label{classLoadBalancer_a887b70b955f0e63b657e3a3a80accd50}} 
+\index{LoadBalancer@{LoadBalancer}!log\_file\_stream@{log\_file\_stream}}
+\index{log\_file\_stream@{log\_file\_stream}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{log\_file\_stream}{log\_file\_stream}}
+{\footnotesize\ttfamily std\+::ofstream Load\+Balancer\+::log\+\_\+file\+\_\+stream}
+
+
+
+Output stream for per-\/load-\/balancer event logging. \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a922ce05be2bc7c6c3ed777b0101a1173}\label{classLoadBalancer_a922ce05be2bc7c6c3ed777b0101a1173}} 
+\index{LoadBalancer@{LoadBalancer}!request\_queue@{request\_queue}}
+\index{request\_queue@{request\_queue}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{request\_queue}{request\_queue}}
+{\footnotesize\ttfamily std\+::queue$<$\mbox{\hyperlink{classRequest}{Request}}$\ast$$>$ Load\+Balancer\+::request\+\_\+queue}
+
+
+
+FIFO queue of pending requests owned by the load balancer. \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a363317f241373a9b71b03df5b4927265}\label{classLoadBalancer_a363317f241373a9b71b03df5b4927265}} 
+\index{LoadBalancer@{LoadBalancer}!time@{time}}
+\index{time@{time}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily int Load\+Balancer\+::time}
+
+
+
+Current local time counter for this load balancer (simulation cycles). \mbox{[}6\mbox{]}. 
+
+\mbox{\Hypertarget{classLoadBalancer_a15d8373032b782244f5b2b42e853ad75}\label{classLoadBalancer_a15d8373032b782244f5b2b42e853ad75}} 
+\index{LoadBalancer@{LoadBalancer}!web\_servers@{web\_servers}}
+\index{web\_servers@{web\_servers}!LoadBalancer@{LoadBalancer}}
+\doxysubsubsection{\texorpdfstring{web\_servers}{web\_servers}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classWebServer}{Web\+Server}}$\ast$$>$ Load\+Balancer\+::web\+\_\+servers}
+
+
+
+List of managed \mbox{\hyperlink{classWebServer}{Web\+Server}} instances (owned by the load balancer). \mbox{[}6\mbox{]}. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{LoadBalancer_8h}{Load\+Balancer.\+h}}\item 
+src/\mbox{\hyperlink{LoadBalancer_8cpp}{Load\+Balancer.\+cpp}}\end{DoxyCompactItemize}
